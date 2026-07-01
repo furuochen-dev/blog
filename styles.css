@@ -8,7 +8,9 @@ body {
 div {
   margin: 0 auto;
   padding-top: 15px;
-  width: 500px;
+  width: min(500px, 100%);
+  box-sizing: border-box;
+  padding-inline: 1rem;
   text-align: center;
   position: relative;
 }
@@ -54,7 +56,7 @@ nav {
   font-style: italic;
   margin: 18px auto 10px;
   padding: 0 0 13px;
-  width: 400px;
+  width: min(400px, 100%);
   text-align: center;
 }
 .author {
@@ -63,7 +65,7 @@ nav {
   font-style: italic;
   margin: 0px auto 10px;
   padding: 0 0 13px;
-  width: 400px;
+  width: min(400px, 100%);
   text-align: center;
 }
 .image {
@@ -72,7 +74,7 @@ nav {
   font-style: italic;
   margin: 0px auto 0px;
   padding: 0 0 0;
-  width: 400px;
+  width: min(400px, 100%);
   text-align: center;
 }
 .image-desc {
@@ -81,7 +83,7 @@ nav {
   font-style: italic;
   margin: 0px auto 10px;
   padding: 0 0 13px;
-  width: 400px;
+  width: min(400px, 100%);
   text-align: center;
 }
 img {
@@ -121,7 +123,7 @@ a {
   color: black;
   text-decoration: none;
 }
-a :hover {
+a:hover {
   text-decoration: underline;
 }
 

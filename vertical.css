@@ -1,12 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@200..900&family=Noto+Serif+TC:wght@200..900&display=swap");
+@import url("/vertical-font.css");
+
+html {
+  height: 100%;
+}
 
 body {
   writing-mode: vertical-rl;
-  font-family: "Noto Serif TC", "Noto Serif SC", serif;
+  font-family: "LXGW WenKai TC", cursive;
   margin-block-end: 0;
   margin-block-start: 0;
   font-variant-numeric: tabular-nums;
   font-size: 1.73vh;
+  height: 100%;
 }
 
 div {
@@ -44,7 +49,7 @@ nav {
   display: block;
   min-height: 20px;
   margin-right: 0;
-  margin-left: 1.5em;
+  margin-left: 0.5em;
   margin-top: -1.5em;
   margin-bottom: -1.5em;
   position: relative;
@@ -52,21 +57,19 @@ nav {
 }
 .description {
   color: #999;
-  text-align: center;
+  text-align: left;
 }
 .author {
   color: #999;
-  font-style: italic;
-  text-align: center;
+  text-align: left;
 }
 .image {
   color: #999;
-  font-style: italic;
-  text-align: center;
+  text-align: left;
 }
 .image-desc {
   color: #555;
-  text-align: center;
+  text-align: left;
 }
 img {
   max-width: 100%;
@@ -75,12 +78,22 @@ img {
   border: 1px solid #ccc;
 }
 .info {
+  margin-right: 0.5em;
   color: #999;
+  font-style: normal;
+}
+hr {
+  border: none;
+  border-left: 1px solid #eaeaea;
+  width: 0;
+  margin: 0 0.5em;
+  padding: 0;
+  height: 55vh;
 }
 .separator {
   display: flex;
   align-items: center;
-  text-align: center;
+  text-align: left;
 }
 
 .separator::before,
@@ -107,7 +120,7 @@ a:hover {
 
 .recent-post {
   color: gray !important;
-  font-style: italic;
+  font-style: normal;
 }
 
 .recent-post-date {

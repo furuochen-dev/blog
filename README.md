@@ -13,7 +13,9 @@ psychology/
   hedonic_adaptation.html
   happiness.html
 chinese/
-  vertical.html         Chinese linguistics (vertical layout experiment)
+  index.html            Chinese section homepage (default: vertical.css)
+
+Chinese pages reuse the same HTML structure as English pages. Swap `vertical.css` ↔ `styles.css` on `#layout-stylesheet` to toggle writing mode.
 ```
 
 ## Adding a post

@@ -1,4 +1,15 @@
-@import url("/vertical-font.css");
+@import url("https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&family=Noto+Serif+TC:wght@200..900&display=swap");
+
+/* 日式竖排标点：仅 ：；（，。、 仍用中文字体，避免靠角落） */
+@font-face {
+  font-family: "CJK Vert Punct";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notoserifjp/v34/xn71YHs72GKoTvER4Gn3b5eMRtWGkp6o7MjQ2bwxOubA.ttf)
+    format("truetype");
+  unicode-range: U+FF1A-FF1B;
+}
 
 html {
   height: 100%;
@@ -6,25 +17,31 @@ html {
 
 body {
   writing-mode: vertical-rl;
-  font-family: "LXGW WenKai TC", cursive;
+  text-orientation: upright;
+  /* upright 保西文正向；vert 让 JP 标点字体换成左右两点的 ：； */
+  font-feature-settings: "vert" 1, "vrt2" 1;
+  font-family: "CJK Vert Punct", "LXGW WenKai TC", "Noto Serif TC", serif;
   margin-block-end: 0;
   margin-block-start: 0;
   font-variant-numeric: tabular-nums;
-  font-size: 1.73vh;
+  font-size: 2vh;
   height: 100%;
 }
 
-div {
+#main {
   margin: auto 0;
   height: 55%;
   position: relative;
+  padding-left: 20vw;
+  padding-right: 20vw;
+  box-sizing: border-box;
 }
 
 h1 {
   margin: 0;
-  padding-right: 20vw;
   font-size: 1.5em;
   line-height: 3rem;
+  margin-left: 1em;
 }
 h3 {
   font-size: 1em;
@@ -33,14 +50,37 @@ h3 {
   margin-block-end: 0;
   margin-block-start: 0;
 }
-p {
-  text-indent: 1em;
+p, li {
   line-height: 1.5em;
   font-size: 1em;
-  margin-block-start: 0;
-  margin-block-end: 0;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
   text-align: left;
 }
+p {
+  text-indent: 1em;
+}
+
+/* 縦中横：列表序号横放 */
+ol {
+  list-style: none;
+  counter-reset: ol-item;
+  padding: 0;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+
+ol > li {
+  counter-increment: ol-item;
+}
+
+ol > li::before {
+  content: counter(ol-item) ".";
+  text-combine-upright: all;
+  -webkit-text-combine: horizontal;
+  margin-inline-end: 0.35em;
+}
+
 nav {
   background: #fbfbfb;
   text-indent: 1.5em;
@@ -49,7 +89,7 @@ nav {
   display: block;
   min-height: 20px;
   margin-right: 0;
-  margin-left: 0.5em;
+  margin-left: 0em;
   margin-top: -1.5em;
   margin-bottom: -1.5em;
   position: relative;
@@ -62,6 +102,7 @@ nav {
 .author {
   color: #999;
   text-align: left;
+  margin-right: 0em;
 }
 .image {
   color: #999;
@@ -79,6 +120,7 @@ img {
 }
 .info {
   margin-right: 0.5em;
+  margin-left: 0em;
   color: #999;
   font-style: normal;
 }
@@ -90,25 +132,30 @@ hr {
   padding: 0;
   height: 55vh;
 }
+/* Same idea as horizontal: line runs through the middle, text covers the gap.
+   In vertical-rl, flex row = top→bottom, so lines go above & below the text. */
 .separator {
   display: flex;
   align-items: center;
-  text-align: left;
+  text-align: center;
+  height: 100%;
 }
 
 .separator::before,
 .separator::after {
   content: "";
   flex: 1;
-  border-bottom: 1px solid gray;
+  width: 1px;
+  align-self: center;
+  background: gray;
 }
 
 .separator:not(:empty)::before {
-  margin-right: 0.25em;
+  margin-bottom: 0.25em;
 }
 
 .separator:not(:empty)::after {
-  margin-left: 0.25em;
+  margin-top: 0.25em;
 }
 a {
   color: black;
@@ -126,4 +173,3 @@ a:hover {
 .recent-post-date {
   color: darkgray !important;
 }
-

@@ -10,12 +10,25 @@
     />
     <title>为什么用了竖排？ - 个人博客</title>
     <link rel="stylesheet" href="/vertical.css" id="layout-stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katsuji@2.0.3/dist/katsuji.css"
+    />
   </head>
   <body>
     <div id="main">
       <a href="/chinese"><h1>傅若辰的个人博客</h1></a>
       <nav>介绍</nav>
-      <p class="description">傅若辰之个人博客，始于二〇二六年六月三十日</p>
+      <p class="description">
+        傅若辰之个人博客，始于二〇二六年六月三十日
+        <br />
+        <a href="https://github.com/furuochen-dev/katsuji" class="katsuji">
+          全站使用活字.js · Katsuji引擎排版
+        </a>
+      </p>
+
+
+
       <hr />
 
       <h3>为什么用了竖排？</h3>
@@ -30,14 +43,12 @@
       </p>
 
       <p>
-        从技术上说，现代浏览器已经能较好支持竖排。CSS 的
-        <code>writing-mode: vertical-rl</code>
-        可以把整块正文切到竖排模式；配合合适的字体、行距和栏宽，中文在屏幕上的可读性并不差。
+        从技术上说，现代浏览器已经能较好支持竖排。CSS的<code>writing-mode: vertical-rl</code>可以把整块正文切到竖排模式；配合合适的字体、行距和栏宽，中文在屏幕上的可读性并不差。
       </p>
 
       <p>
-        竖排网页难做，难的不是「能不能显示」，而是「怎样把导航、标题、引用、图片这些横排时代养成的习惯，重新安排进竖排的版式里」。这也是这个网站正在摸索的事：HTML
-        结构可以统一，横排竖排只换样式表，让同一篇文章不必维护两套页面。实际上这就是这个博客采用的方案。
+        竖排网页难做，难的不是「能不能显示」，而是「怎样把导航、标题、引用、图片这些横排时代养成的习惯，重新安排进竖排的版式里」。这也是这个网站正在摸索的事：HTML结
+        构可以统一，横排竖排只换样式表，让同一篇文章不必维护两套页面。实际上这就是这个博客采用的方案。
       </p>
 
       <p>
@@ -82,5 +93,7 @@
         <br />收录于个人博客
       </p>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/katsuji@2.0.5/dist/katsuji.js"></script>
+    <script src="/chinese/katsuji-init.js"></script>
   </body>
 </html>

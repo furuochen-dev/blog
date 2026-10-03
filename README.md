@@ -16,6 +16,8 @@ chinese/
   index.html            Chinese section homepage (default: vertical.css)
 
 Chinese pages reuse the same HTML structure as English pages. Swap `vertical.css` ↔ `styles.css` on `#layout-stylesheet` to toggle writing mode.
+
+Chinese vertical pages load Katsuji from jsDelivr (`katsuji@2.0.3`) plus `/chinese/katsuji-init.js` for punctuation config.
 ```
 
 ## Adding a post

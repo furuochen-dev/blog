@@ -1,15 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&family=Noto+Serif+TC:wght@200..900&display=swap");
-
-/* 日式竖排标点：仅 ：；（，。、 仍用中文字体，避免靠角落） */
-@font-face {
-  font-family: "CJK Vert Punct";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/notoserifjp/v34/xn71YHs72GKoTvER4Gn3b5eMRtWGkp6o7MjQ2bwxOubA.ttf)
-    format("truetype");
-  unicode-range: U+FF1A-FF1B;
-}
+/* ：； 用 Hina Mincho（Google Fonts）：其 vert 二者皆为横两点 */
+@import url("https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap&text=%EF%BC%9A%EF%BC%9B");
 
 html {
   height: 100%;
@@ -18,9 +9,8 @@ html {
 body {
   writing-mode: vertical-rl;
   text-orientation: upright;
-  /* upright 保西文正向；vert 让 JP 标点字体换成左右两点的 ：； */
   font-feature-settings: "vert" 1, "vrt2" 1;
-  font-family: "CJK Vert Punct", "LXGW WenKai TC", "Noto Serif TC", serif;
+  font-family: "Hina Mincho", "LXGW WenKai TC", "Noto Serif TC", serif;
   margin-block-end: 0;
   margin-block-start: 0;
   font-variant-numeric: tabular-nums;
@@ -30,7 +20,7 @@ body {
 
 #main {
   margin: auto 0;
-  height: 55%;
+  height: 56vh;
   position: relative;
   padding-left: 20vw;
   padding-right: 20vw;
@@ -61,6 +51,17 @@ p {
   text-indent: 1em;
 }
 
+.katsuji {
+  color: #999;
+  text-orientation: mixed;
+  margin-top: 1em;
+}
+
+code {
+  text-orientation: mixed;
+  font-size: 0.75em;
+}
+
 /* 縦中横：列表序号横放 */
 ol {
   list-style: none;
@@ -78,7 +79,7 @@ ol > li::before {
   content: counter(ol-item) ".";
   text-combine-upright: all;
   -webkit-text-combine: horizontal;
-  margin-inline-end: 0.35em;
+  margin-inline-end: 0em;
 }
 
 nav {
@@ -88,8 +89,8 @@ nav {
   border-right: 1px solid #eaeaea;
   display: block;
   min-height: 20px;
-  margin-right: 0;
-  margin-left: 0em;
+  margin-right: 1em;
+  margin-left: 1em;
   margin-top: -1.5em;
   margin-bottom: -1.5em;
   position: relative;
@@ -98,6 +99,8 @@ nav {
 .description {
   color: #999;
   text-align: left;
+  margin-left: 0em;
+  margin-right: 0em;
 }
 .author {
   color: #999;
@@ -128,9 +131,9 @@ hr {
   border: none;
   border-left: 1px solid #eaeaea;
   width: 0;
-  margin: 0 0.5em;
+  margin: 0 1em;
   padding: 0;
-  height: 55vh;
+  height: 100%;
 }
 /* Same idea as horizontal: line runs through the middle, text covers the gap.
    In vertical-rl, flex row = top→bottom, so lines go above & below the text. */
@@ -139,6 +142,7 @@ hr {
   align-items: center;
   text-align: center;
   height: 100%;
+  width: 3em;
 }
 
 .separator::before,
@@ -157,10 +161,12 @@ hr {
 .separator:not(:empty)::after {
   margin-top: 0.25em;
 }
+
 a {
   color: black;
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: underline;
 }

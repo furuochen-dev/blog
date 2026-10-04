@@ -9,24 +9,42 @@
       href="https://upload.wikimedia.org/wikipedia/commons/6/6c/Psi2.svg"
     />
     <title>个人博客</title>
-    <link rel="stylesheet" href="/vertical.css" id="layout-stylesheet" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katsuji@2.0.4/dist/katsuji.css"
+      href="/vertical.css"
+      media="(orientation: landscape)"
+      id="layout-stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="/chinese-horizontal.css"
+      media="(orientation: portrait)"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katsuji@2.0.5/dist/katsuji.css"
     />
   </head>
   <body>
     <div id="main">
-      <h1>傅若辰的个人博客</h1>
+      <a href="/chinese"><h1>傅若辰的个人博客</h1></a>
 
       <nav>介绍</nav>
       <p class="description">
         傅若辰之个人博客，始于二〇二六年六月三十日
-        <br />
-        <a href="https://github.com/furuochen-dev/katsuji" class="katsuji">
+      </p>
+
+      <p class="description">
+        <a href="https://github.com/furuochen-dev/katsuji">
           全站使用活字.js · Katsuji引擎排版
         </a>
       </p>
+
+      <p class="description">
+        <a href="/">站点首页 · Home</a>
+      </p>
+
+
 
       <div class="separator">二〇二六年十月</div>
 
@@ -42,7 +60,7 @@
       <p class="info">上次更新于二〇二六年十月二日</p>
 
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/katsuji@2.0.5/dist/katsuji.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katsuji@2.0.6/dist/katsuji.js"></script>
     <script src="/chinese/katsuji-init.js"></script>
   </body>
 </html>

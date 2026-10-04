@@ -8,48 +8,133 @@
       type="image/x-icon"
       href="https://upload.wikimedia.org/wikipedia/commons/6/6c/Psi2.svg"
     />
-    <title>Furuochen's Blog</title>
-    <link rel="stylesheet" href="/styles.css" />
+    <title>Ruochen Fu / 傅若辰</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.8.1/github-markdown-dark.min.css"
+    />
+    <link rel="stylesheet" href="/foyer.css" />
   </head>
   <body>
-    <div id="main">
-      <h1>Furuochen's Blog</h1>
-      <nav>ABOUT</nav>
-      <p class="description">My blog</p>
-      <hr />
+    <div class="foyer">
+      <div class="foyer-stage">
+        <div class="foyer-blog">
+          <p class="foyer-blog-label">Blog · 博客</p>
+          <nav class="foyer-actions" aria-label="Blog">
+            <a class="profile-btn" href="/chinese">进入中文</a>
+            <a class="profile-btn" href="/english">Enter English</a>
+          </nav>
+        </div>
 
-      <a href="/psychology">
-        <h3>Psychology Subsection</h3>
-      </a>
-      <p>
-        Psychology blogs that I've written, some/most/all for school
-        <br /><br />
-        Recent posts:
-        <a class="recent-post" href="/psychology/hedonic_adaptation.html">
-          <span
-            >Hedonic Adaptation -
-            <span class="recent-post-date"> October 2025 </span></span
-          >
-        </a>
-        <a class="recent-post" href="/psychology/happiness.html">
-          <span
-            >Kindness and Gratitude-
-            <span class="recent-post-date"> February 2026 </span></span
-          >
-        </a>
-      </p>
+        <div class="foyer-layout">
+          <aside class="profile">
+            <img
+              class="profile-avatar"
+              src="https://avatars.githubusercontent.com/u/62882800?v=4"
+              width="296"
+              height="296"
+              alt="furuochen-dev"
+            />
+            <div class="profile-names">
+              <h1 class="profile-name">Ruochen Fu</h1>
+              <p class="profile-name-zh">傅若辰</p>
+              <p class="profile-login">furuochen-dev</p>
+            </div>
+            <ul class="profile-meta">
+              <li title="Local time">
+                <svg
+                  aria-hidden="true"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                >
+                  <path
+                    d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm7-3.25v2.992l2.028.812a.75.75 0 0 1-.557 1.392l-2.5-1A.751.751 0 0 1 7 8.25v-3.5a.75.75 0 0 1 1.5 0Z"
+                  ></path>
+                </svg>
+                <span
+                  ><time id="local-time" datetime="">--:--</time>
+                  <span class="fg-muted">(UTC+8)</span></span
+                >
+              </li>
+            </ul>
+          </aside>
 
-      <a href="/psychology">
-        <img
-          src="/psychology/The-response-of-happiness-and-hedonic-capital-to-a-negative-shock-to-the-flow-of.png"
-          alt="The response of happiness and hedonic capital to a negative shock to the flow of psychological resources"
-        />
-      </a>
-
-      <p class="info">
-        Last updated on 2nd of February, 2026 at 11:19:37 Singapore Standard
-        Time
-      </p>
+          <section class="readme-card">
+            <header class="readme-card-header">
+              <svg
+                aria-hidden="true"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+              >
+                <path
+                  d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.375.004.005.004-.005.002-.002.008-.008.017-.017.065-.065A1.75 1.75 0 0 1 8.745 12h4.505V2.5h-4.245a2.25 2.25 0 0 0-1.78.902l-.159.218a.75.75 0 0 1-1.2 0l-.158-.217A2.25 2.25 0 0 0 5.004 2.5H.75v9.75h4.507a1.75 1.75 0 0 1 1.243.525ZM2.5 4.75c0-.414.336-.75.75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75ZM3.25 7a.75.75 0 0 0 0 1.5h2.5a.75.75 0 0 0 0-1.5Zm-.75 2.75c0-.414.336-.75.75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"
+                ></path>
+              </svg>
+              <a
+                href="https://github.com/furuochen-dev/furuochen-dev/blob/main/README.md"
+                >furuochen-dev/README.md</a
+              >
+            </header>
+            <article
+              class="readme-box markdown-body"
+              id="readme-en"
+              data-src="https://raw.githubusercontent.com/furuochen-dev/furuochen-dev/main/README.md"
+            >
+              <p class="foyer-loading">Loading README…</p>
+            </article>
+          </section>
+        </div>
+      </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
+    <script>
+      (function () {
+        var tz = "Asia/Singapore";
+        var timeEl = document.getElementById("local-time");
+        function tick() {
+          try {
+            var fmt = new Intl.DateTimeFormat("en-GB", {
+              timeZone: tz,
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
+            });
+            var parts = fmt.formatToParts(new Date());
+            var h = parts.find(function (p) {
+              return p.type === "hour";
+            }).value;
+            var m = parts.find(function (p) {
+              return p.type === "minute";
+            }).value;
+            timeEl.textContent = h + ":" + m;
+            timeEl.setAttribute("datetime", new Date().toISOString());
+          } catch (e) {
+            timeEl.textContent = "--:--";
+          }
+        }
+        tick();
+        setInterval(tick, 30000);
+
+        var el = document.getElementById("readme-en");
+        var src = el.getAttribute("data-src");
+        fetch(src, { cache: "no-cache" })
+          .then(function (res) {
+            if (!res.ok) throw new Error(res.statusText);
+            return res.text();
+          })
+          .then(function (md) {
+            el.innerHTML = marked.parse(md, { async: false });
+          })
+          .catch(function (err) {
+            el.innerHTML =
+              '<p class="foyer-error">Failed to load README.</p>' +
+              '<p class="foyer-error"><a href="https://github.com/furuochen-dev/furuochen-dev/blob/main/README.md">furuochen-dev/README.md</a></p>';
+            console.error(err);
+          });
+      })();
+    </script>
   </body>
 </html>

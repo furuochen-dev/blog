@@ -51,10 +51,9 @@ p {
   text-indent: 1em;
 }
 
-.katsuji {
+.description a {
   color: #999;
   text-orientation: mixed;
-  margin-top: 1em;
 }
 
 code {

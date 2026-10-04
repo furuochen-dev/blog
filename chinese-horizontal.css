@@ -1,0 +1,208 @@
+/*
+ * 中文横排（portrait）独立样式，不依赖 styles.css。
+ * 字阶：站名 > 篇名 > 正文 > 元信息；间距在 nav / hr / separator。
+ */
+@import url("https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&family=Noto+Serif+TC:wght@200..900&display=swap");
+
+html {
+  height: 100%;
+}
+
+body {
+  writing-mode: horizontal-tb;
+  margin: 0;
+  font-size: 18px;
+  font-family: "LXGW WenKai TC", "Noto Serif TC", serif;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.8;
+  color: #222;
+}
+
+#main {
+  /*
+   * 行长取整字：内容盒宽为 1em（≈一字宽）的整数倍。
+   * content-box：width 不含 padding，才是真正的「每行字数」。
+   */
+  box-sizing: content-box;
+  position: relative;
+  margin: 0 auto;
+  padding: 1.25rem;
+  padding-top: 1.5rem;
+  width: min(36em, 100%);
+  width: round(down, min(36em, 100vw - 2.5rem), 1em);
+  text-align: center;
+}
+
+h1 {
+  margin: 0.55em 0 0.45em;
+  font-size: 1.75rem;
+  font-weight: normal;
+  line-height: 1.3;
+  text-align: center;
+}
+
+h3 {
+  margin: 0 0 0.4em;
+  font-size: 1.35rem;
+  font-weight: normal;
+  line-height: 1.4;
+  text-align: center;
+}
+
+p,
+li {
+  font-size: 1rem;
+  line-height: 1.8;
+  text-align: left;
+  color: #222;
+}
+
+p {
+  margin: 0 0 1.1em;
+  text-indent: 1em;
+}
+
+ol {
+  list-style: decimal;
+  padding-inline-start: 1.5em;
+  margin: 0.85em 0;
+}
+
+nav {
+  display: block;
+  min-height: 1.5em;
+  margin: 0.5em 0 1em;
+  padding: 0.4em 0.75em 0.35em;
+  background: #fbfbfb;
+  border-top: 1px solid #eaeaea;
+  border-bottom: 1px solid #eaeaea;
+  color: #999;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  text-align: center;
+  text-indent: 0;
+}
+
+.description,
+.author,
+.image,
+.image-desc,
+.info {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  font-style: normal;
+  text-align: center;
+  text-indent: 0;
+  width: auto;
+  max-width: none;
+}
+
+.description {
+  margin: 0;
+  padding: 0;
+  color: #999;
+}
+
+p.description {
+  margin-bottom: 0.2em;
+}
+
+.description a {
+  color: #999;
+  display: inline-block;
+  text-indent: 0;
+  font-size: inherit;
+  text-decoration: none;
+}
+
+.description a:hover {
+  color: #999;
+  text-decoration: underline;
+}
+
+.author {
+  margin: 0 0 0.9em;
+  padding: 0;
+  color: #999;
+}
+
+.image {
+  margin: 0;
+  padding: 0;
+  color: #999;
+}
+
+.image-desc {
+  margin: 0 0 0.75em;
+  padding: 0;
+  color: #555;
+}
+
+.info {
+  margin: 0.75em 0;
+  padding: 0;
+  color: #999;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  max-height: 200px;
+  margin: 5px auto;
+  border: 1px solid #ccc;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #eaeaea;
+  width: 100%;
+  height: 0;
+  margin: 1.25em auto;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin: 1.25em 0;
+  color: #999;
+}
+
+.separator::before,
+.separator::after {
+  content: "";
+  flex: 1;
+  height: 0;
+  border-bottom: 1px solid gray;
+}
+
+.separator:not(:empty)::before {
+  margin-right: 0.5em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: 0.5em;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-size: 0.9em;
+}
+
+.recent-post {
+  color: gray !important;
+  font-style: normal;
+}
+
+.recent-post-date {
+  color: darkgray !important;
+}

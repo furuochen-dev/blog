@@ -17,8 +17,13 @@ body {
   text-orientation: upright;
   font-feature-settings: "vert" 1, "vrt2" 1;
   font-family: "Hina Mincho", "LXGW WenKai TC", "Noto Serif TC", serif;
-  /* Same as vertical.css body */
-  font-size: 2vh;
+  /*
+   * Fallback only (giscus-init.js overwrites with parent computed px).
+   * Inside the iframe, `vh` is the iframe height — not the page.
+   * Parent body is 2vh and the frame is forced to 56vh, so
+   * page 2vh ≡ iframe (100vh * 2 / 56).
+   */
+  font-size: calc(100vh * 2 / 56);
   line-height: 1.5;
   font-variant-numeric: tabular-nums;
   background: #fff;

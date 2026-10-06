@@ -112,7 +112,10 @@ main {
   color: var(--color-fg-default);
   writing-mode: horizontal-tb;
   font-family: "LXGW WenKai TC", "Noto Serif TC", serif;
-  /* Same as chinese-horizontal.css body */
+  /*
+   * Fallback only (giscus-init.js overwrites with parent computed px).
+   * Must match chinese-horizontal.css body — not giscus’s .875rem.
+   */
   font-size: 18px;
   line-height: 1.8;
   font-variant-numeric: tabular-nums;

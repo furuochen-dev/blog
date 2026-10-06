@@ -177,16 +177,11 @@ a:hover {
   color: darkgray !important;
 }
 
-/* Narrow phones: ease tracking / avoid harsh justify */
+/* Narrow phones: ease tracking on the all-caps title */
 @media (max-width: 480px) {
   h1 {
     letter-spacing: 0.02em;
     word-spacing: 0.04em;
-  }
-
-  p {
-    text-align: left;
-    hyphens: auto;
   }
 
   nav {

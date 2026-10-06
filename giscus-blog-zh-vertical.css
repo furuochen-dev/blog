@@ -1,0 +1,267 @@
+/*!
+ * Giscus theme — Chinese landscape (vertical-rl), matches vertical.css
+ * No Katsuji; upright CJK + site fonts/colors/chrome.
+ */
+@import url("https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&family=Noto+Serif+TC:wght@200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hina+Mincho&display=swap&text=%EF%BC%9A%EF%BC%9B");
+
+main {
+  --color-prettylights-syntax-comment: #6e7781;
+  --color-prettylights-syntax-constant: #0550ae;
+  --color-prettylights-syntax-entity: #8250df;
+  --color-prettylights-syntax-storage-modifier-import: #333333;
+  --color-prettylights-syntax-entity-tag: #116329;
+  --color-prettylights-syntax-keyword: #cf222e;
+  --color-prettylights-syntax-string: #0a3069;
+  --color-prettylights-syntax-variable: #953800;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #82071e;
+  --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
+  --color-prettylights-syntax-invalid-illegal-bg: #82071e;
+  --color-prettylights-syntax-carriage-return-text: #f6f8fa;
+  --color-prettylights-syntax-carriage-return-bg: #cf222e;
+  --color-prettylights-syntax-string-regexp: #116329;
+  --color-prettylights-syntax-markup-list: #3b2300;
+  --color-prettylights-syntax-markup-heading: #0550ae;
+  --color-prettylights-syntax-markup-italic: #333333;
+  --color-prettylights-syntax-markup-bold: #333333;
+  --color-prettylights-syntax-markup-deleted-text: #82071e;
+  --color-prettylights-syntax-markup-deleted-bg: #ffebe9;
+  --color-prettylights-syntax-markup-inserted-text: #116329;
+  --color-prettylights-syntax-markup-inserted-bg: #dafbe1;
+  --color-prettylights-syntax-markup-changed-text: #953800;
+  --color-prettylights-syntax-markup-changed-bg: #ffd8b5;
+  --color-prettylights-syntax-markup-ignored-text: #eaeef2;
+  --color-prettylights-syntax-markup-ignored-bg: #0550ae;
+  --color-prettylights-syntax-meta-diff-range: #8250df;
+  --color-prettylights-syntax-brackethighlighter-angle: #57606a;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f;
+  --color-prettylights-syntax-constant-other-reference-link: #0a3069;
+
+  --color-btn-text: #333333;
+  --color-btn-bg: #fbfbfb;
+  --color-btn-border: #eaeaea;
+  --color-btn-shadow: none;
+  --color-btn-inset-shadow: none;
+  --color-btn-hover-bg: #f3f4f6;
+  --color-btn-hover-border: #eaeaea;
+  --color-btn-active-bg: #eeeeee;
+  --color-btn-active-border: #eaeaea;
+  --color-btn-selected-bg: #f0f0f0;
+  --color-btn-primary-text: #fff;
+  --color-btn-primary-bg: #333333;
+  --color-btn-primary-border: #333333;
+  --color-btn-primary-shadow: none;
+  --color-btn-primary-inset-shadow: none;
+  --color-btn-primary-hover-bg: #111111;
+  --color-btn-primary-hover-border: #111111;
+  --color-btn-primary-selected-bg: #111111;
+  --color-btn-primary-selected-shadow: none;
+  --color-btn-primary-disabled-text: #ffffff;
+  --color-btn-primary-disabled-bg: #999999;
+  --color-btn-primary-disabled-border: #999999;
+
+  --color-action-list-item-default-hover-bg: rgb(208 215 222 / 32%);
+  --color-segmented-control-bg: #fbfbfb;
+  --color-segmented-control-button-bg: #fff;
+  --color-segmented-control-button-selected-border: #999999;
+
+  --color-fg-default: #333333;
+  --color-fg-muted: #999999;
+  --color-fg-subtle: #999999;
+  --color-fg-on-emphasis: #ffffff;
+
+  --color-canvas-default: #ffffff;
+  --color-canvas-overlay: #ffffff;
+  --color-canvas-inset: #fbfbfb;
+  --color-canvas-subtle: #fbfbfb;
+
+  --color-border-default: #eaeaea;
+  --color-border-muted: #eaeaea;
+  --color-border-subtle: rgb(31 35 40 / 10%);
+
+  --color-neutral-emphasis-plus: #333333;
+  --color-neutral-emphasis: #999999;
+  --color-neutral-muted: rgb(175 184 193 / 20%);
+  --color-neutral-subtle: rgb(234 238 242 / 50%);
+
+  --color-accent-fg: #333333;
+  --color-accent-emphasis: #333333;
+  --color-accent-muted: rgb(51 51 51 / 25%);
+  --color-accent-subtle: #fbfbfb;
+
+  --color-success-fg: #333333;
+  --color-attention-fg: #9a6700;
+  --color-attention-muted: rgb(212 167 44 / 40%);
+  --color-attention-subtle: #fff8c5;
+  --color-danger-fg: #d1242f;
+  --color-danger-muted: rgb(255 129 130 / 40%);
+  --color-danger-subtle: #ffebe9;
+  --color-done-fg: #8250df;
+
+  --color-primer-shadow-inset: none;
+  --color-primer-shadow-focus: 0 0 0 2px rgb(51 51 51 / 25%);
+
+  --color-scale-gray-1: #fbfbfb;
+  --color-scale-blue-1: #eaeaea;
+
+  --color-social-reaction-bg-hover: var(--color-scale-gray-1);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
+
+  color-scheme: light;
+  box-sizing: border-box;
+  background-color: var(--color-canvas-default);
+  color: var(--color-fg-default);
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-feature-settings: "vert" 1, "vrt2" 1;
+  font-family: "Hina Mincho", "LXGW WenKai TC", "Noto Serif TC", serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  height: 100%;
+  min-height: 56vh;
+  overflow: auto;
+}
+
+#__next,
+#__next > div {
+  writing-mode: inherit;
+  height: 100%;
+  min-height: inherit;
+}
+
+#__next .gsc-main {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 1.5em;
+  width: auto;
+  height: 100%;
+  min-height: 56vh;
+  font-family: inherit;
+}
+
+#__next .gsc-comments,
+#__next .gsc-timeline,
+#__next .gsc-reactions {
+  writing-mode: inherit;
+  text-orientation: inherit;
+  font-family: inherit;
+}
+
+#__next .gsc-header,
+#__next .gsc-left-header,
+#__next .gsc-comment-header,
+#__next .gsc-comment-author,
+#__next .gsc-comment-author-avatar,
+#__next .gsc-comment-box-tabs,
+#__next .gsc-comment-box-bottom,
+#__next .gsc-comment-box-buttons {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#__next .gsc-comment-box-buttons {
+  margin-inline-start: 0;
+  margin-block-start: 0.5em;
+}
+
+#__next .gsc-comment-content,
+#__next .gsc-comment-box,
+#__next .gsc-comment-box-textarea,
+#__next .markdown {
+  font-family: inherit;
+  color: var(--color-fg-default);
+  writing-mode: inherit;
+  text-orientation: inherit;
+  font-feature-settings: inherit;
+}
+
+#__next .gsc-comment-content {
+  line-height: 1.5;
+  text-align: left;
+  text-indent: 0;
+}
+
+#__next .gsc-comment-box-textarea {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  width: 8em;
+  min-width: 6em;
+  max-width: 12em;
+  height: 100%;
+  min-height: 20em;
+  max-height: none;
+  resize: horizontal;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.5;
+}
+
+#__next .gsc-comment-box-main {
+  margin: 0.5em;
+}
+
+/* Physical Tailwind utilities → logical / neutral under vertical-rl */
+#__next .ml-1,
+#__next .mr-1,
+#__next .mr-2,
+#__next .mx-2 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-inline: 0.25em;
+}
+
+#__next .mb-\[-1px\],
+#__next .mt-2 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  margin-block: 0.25em;
+}
+
+#__next .px-4,
+#__next .px-2,
+#__next .py-2,
+#__next .py-1 {
+  padding-left: 0.35em !important;
+  padding-right: 0.35em !important;
+  padding-top: 0.5em !important;
+  padding-bottom: 0.5em !important;
+}
+
+#__next img.mr-2,
+#__next .gsc-comment-author-avatar img {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-block-end: 0.35em;
+}
+
+#__next .btn,
+#__next .btn-primary,
+#__next .BtnGroup,
+#__next .BtnGroup-item {
+  font-family: inherit;
+  border-radius: 0;
+  box-shadow: none;
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+}
+
+#__next .gsc-comment,
+#__next .gsc-comment-box:not(.gsc-comment-box-is-reply) {
+  border-radius: 0;
+}
+
+#__next code,
+#__next a {
+  text-orientation: mixed;
+}
+
+main .pagination-loader-container {
+  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line.svg");
+}
+
+main .gsc-loading-image {
+  background-image: url("https://github.githubassets.com/images/mona-loading-default.gif");
+}

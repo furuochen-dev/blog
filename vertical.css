@@ -178,3 +178,35 @@ a:hover {
 .recent-post-date {
   color: darkgray !important;
 }
+
+/* Giscus column: same measure band as #main */
+.comments {
+  height: 56vh;
+  max-height: 56vh;
+  width: 18em;
+  margin-left: 1em;
+  margin-right: 1em;
+  padding-left: 0.75em;
+  border-left: 1px solid #eaeaea;
+  box-sizing: border-box;
+  color: #333;
+  background: #fff;
+  color-scheme: light;
+}
+
+.comments > h3 {
+  margin: 0 0 0.75em;
+  font-size: 1em;
+  line-height: 1.5em;
+  text-indent: 1em;
+}
+
+.giscus,
+.giscus-frame {
+  width: 100% !important;
+  height: calc(56vh - 3em) !important;
+  max-height: calc(56vh - 3em);
+  background: #fff;
+  color-scheme: light;
+  border: 0;
+}

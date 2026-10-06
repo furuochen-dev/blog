@@ -206,3 +206,30 @@ code {
 .recent-post-date {
   color: darkgray !important;
 }
+
+/* Giscus: match portrait chinese measure */
+.comments {
+  margin-top: 1.5em;
+  padding-top: 0.25em;
+  border-top: 1px solid #eaeaea;
+  text-align: left;
+  background: #fff;
+  color: #222;
+  color-scheme: light;
+}
+
+.comments > h3 {
+  margin: 1.1em 0 0.85em;
+  font-size: 1.35rem;
+  font-weight: normal;
+  text-align: center;
+  text-indent: 0;
+}
+
+.giscus,
+.giscus-frame {
+  width: 100%;
+  max-width: 100%;
+  background: #fff;
+  color-scheme: light;
+}

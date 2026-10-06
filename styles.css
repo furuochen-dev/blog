@@ -177,6 +177,30 @@ a:hover {
   color: darkgray !important;
 }
 
+/* Giscus: page chrome matches English wing; widget uses hosted custom theme */
+.comments {
+  margin-top: 2em;
+  padding-top: 0.25em;
+  border-top: 1px solid #eaeaea;
+  text-align: left;
+  background: #fff;
+  color: #333;
+  color-scheme: light;
+}
+
+.comments > h3 {
+  margin: 1.1em 0 0.85em;
+  text-align: center;
+}
+
+.giscus,
+.giscus-frame {
+  width: 100%;
+  max-width: 100%;
+  background: #fff;
+  color-scheme: light;
+}
+
 /* Narrow phones: ease tracking on the all-caps title */
 @media (max-width: 480px) {
   h1 {

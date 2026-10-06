@@ -1,5 +1,7 @@
 /*!
- * Giscus theme — Chinese portrait (horizontal), matches chinese-horizontal.css
+ * Giscus theme — Chinese portrait (horizontal).
+ * Type size matches chinese-horizontal.css body { font-size: 18px }.
+ * Overrides giscus defaults (.gsc-comment / .gsc-comment-box use .875rem).
  */
 @import url("https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&family=Noto+Serif+TC:wght@200..900&display=swap");
 
@@ -110,29 +112,33 @@ main {
   color: var(--color-fg-default);
   writing-mode: horizontal-tb;
   font-family: "LXGW WenKai TC", "Noto Serif TC", serif;
-  font-size: 1rem;
+  /* Same as chinese-horizontal.css body */
+  font-size: 18px;
   line-height: 1.8;
   font-variant-numeric: tabular-nums;
 }
 
-#__next .gsc-main,
-#__next .gsc-comments,
-#__next .gsc-comment-content,
+/* Kill giscus .875rem / 1.25rem on comment chrome */
+#__next .gsc-comment,
 #__next .gsc-comment-box,
-#__next .gsc-comment-box-textarea,
+#__next .gsc-loading-text,
+#__next .gsc-pagination-button,
+#__next .form-control,
+#__next .form-select,
+#__next .btn,
 #__next .markdown {
   font-family: inherit;
+  font-size: 1em !important;
+  line-height: 1.8 !important;
   color: var(--color-fg-default);
 }
 
 #__next .gsc-comment-content {
-  line-height: 1.8;
   text-align: left;
 }
 
 #__next .btn,
 #__next .btn-primary {
-  font-family: inherit;
   border-radius: 0;
   box-shadow: none;
 }

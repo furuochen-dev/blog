@@ -1,6 +1,6 @@
 /*!
  * Custom Giscus theme for furuochen.com English wing.
- * Based on giscus "light", with page-matched canvas/borders.
+ * Colors only — keep giscus/system UI fonts (do not force serif).
  */
 main {
   --color-prettylights-syntax-comment: #6e7781;
@@ -101,7 +101,6 @@ main {
   --color-scale-gray-1: #eaeef2;
   --color-scale-blue-1: #b6e3ff;
 
-  /*! Extensions from @primer/css/alerts/flash.scss */
   --color-social-reaction-bg-hover: var(--color-scale-gray-1);
   --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-1);
 }
@@ -110,55 +109,6 @@ main {
   color-scheme: light;
   background-color: var(--color-canvas-default);
   color: var(--color-fg-default);
-  font-family: Palatino, "Palatino Linotype", "Book Antiqua", "Times New Roman",
-    Times, serif;
-  font-size: 1.05rem;
-  line-height: 1.65;
-}
-
-/* Match English wing: muted chrome, ink text — beat Tailwind #__next */
-#__next .gsc-main,
-#__next .gsc-comments,
-#__next .gsc-comment-content,
-#__next .gsc-comment-box,
-#__next .gsc-comment-box-textarea,
-#__next .markdown {
-  font-family: inherit;
-  color: var(--color-fg-default);
-}
-
-#__next .gsc-comment-content {
-  line-height: 1.65;
-  text-align: left;
-}
-
-#__next .btn,
-#__next .btn-primary {
-  font-family: inherit;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-#__next .btn-primary {
-  background-color: #333;
-  border-color: #333;
-  color: #fff;
-}
-
-#__next .btn-primary:hover {
-  background-color: #111;
-  border-color: #111;
-}
-
-#__next .btn-primary:disabled {
-  background-color: #999;
-  border-color: #999;
-  color: #fff;
-}
-
-#__next .gsc-comment,
-#__next .gsc-comment-box:not(.gsc-comment-box-is-reply) {
-  border-radius: 0;
 }
 
 main .pagination-loader-container {

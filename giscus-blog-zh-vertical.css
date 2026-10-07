@@ -782,10 +782,11 @@ main {
 }
 
 /*
- * 二级回复就画在 .gsc-replies 这一层：
- * inset 底 + 顶上 1em 区里一条细线表示从属（不要往写回复上绕伪元素）。
+ * 二级回复就画在 .gsc-replies：
+ * 无背景；顶线夹在 0.5em margin 与 0.5em padding 中间。
  */
-#__next .gsc-replies {
+#__next .gsc-replies,
+#__next .gsc-replies.color-bg-inset {
   writing-mode: inherit;
   text-orientation: inherit;
   display: flex;
@@ -796,17 +797,15 @@ main {
   height: 100%;
   box-sizing: border-box;
   margin: 0 !important;
+  margin-inline-start: 0.5em !important; /* 线外侧 */
   padding: 0 !important;
-  padding-inline-start: 1em !important;
+  padding-inline-start: 0.5em !important; /* 线内侧 */
   border: none !important;
   border-radius: 0 !important;
   border-inline-start: 1px solid #333 !important; /* 顶线 */
-  background-color: var(--color-canvas-inset) !important;
+  background: transparent !important;
+  background-color: transparent !important;
   box-shadow: none !important;
-}
-
-#__next .gsc-replies.color-bg-inset {
-  background-color: var(--color-canvas-inset) !important;
 }
 
 /* 「写回复」贴顶，与 .gsc-replies 顶线齐平；无线条伪元素 */
@@ -1128,7 +1127,6 @@ main {
 }
 
 #__next .gsc-reactions-popover,
-#__next .gsc-reactions-popover.open,
 #__next .gsc-reactions-popover.bottom,
 #__next .gsc-reactions-popover.top,
 #__next .gsc-reactions-popover.left,
@@ -1152,8 +1150,12 @@ main {
   left: auto !important;
   right: calc(100% + 0.35em) !important;
   margin: 0 !important;
-  transform: scale(0.5) !important;
   transform-origin: right top !important;
+}
+
+#__next .gsc-reactions-popover:not(.open) {
+  transform: scale(0.5) !important;
+  visibility: hidden !important;
 }
 
 #__next .gsc-reactions-popover.open {
@@ -1161,17 +1163,32 @@ main {
   visibility: visible !important;
 }
 
-/* 隐藏「选择您的回应」文案区与分隔线，只留表情格 */
-#__next .gsc-reactions-popover p,
-#__next .gsc-reactions-popover > .my-2.border-t,
-#__next .gsc-reactions-popover > .border-t,
+/* 只藏「选择您的回应」标题和顶部分隔线；表情格 .m-2 必须留下 */
+#__next .gsc-reactions-popover > p {
+  display: none !important;
+}
+
 #__next .gsc-reactions-popover > div.my-2.border-t {
   display: none !important;
-  height: 0 !important;
-  margin: 0 !important;
+}
+
+#__next .gsc-reactions-popover > div.m-2 {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  height: auto !important;
+  min-height: 2rem !important;
+  margin: 0.25rem !important;
   padding: 0 !important;
-  overflow: hidden !important;
-  border: none !important;
+  overflow: visible !important;
+  visibility: visible !important;
+}
+
+#__next .gsc-reactions-popover .gsc-emoji-button {
+  display: inline-flex !important;
+  width: 2rem !important;
+  height: 2rem !important;
+  visibility: visible !important;
+  font-size: 1rem !important;
 }
 
 /* 笑脸：与列宽同轨的方盒 + grid 居中（躲开 summary/octicon 基线偏移） */

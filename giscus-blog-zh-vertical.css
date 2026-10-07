@@ -145,10 +145,10 @@ main {
   height: 100%;
   min-height: 100%;
   /*
-   * 原 .comments padding-right：挪进 iframe。
-   * 物理右边 1.5em 空槽，回应 wrap-reverse 超出 1em 轨时落在框内，不跑出 iframe。
+   * 原 .comments 右侧内槽挪进 iframe。
+   * 2.5em：第二列回应（最多两列×四枚）落在框内，不跑出 iframe。
    */
-  padding-right: 1.5em;
+  padding-right: 2.5em;
   /* visible so reaction popovers are not clipped */
   overflow: visible;
 }
@@ -213,8 +213,8 @@ main {
 @supports (anchor-name: --x) {
   #__next .gsc-reactions {
     position-anchor: --gsc-left-header;
-    /* 与 left-header 内 gap:0.5em 同距，接上「评论·回复·表情」 */
-    top: calc(anchor(bottom) + 0.5em);
+    /* 中黑与上下文案贴紧，不加 0.5em */
+    top: anchor(bottom);
     right: anchor(right);
     bottom: auto;
   }
@@ -224,7 +224,7 @@ main {
   display: flex !important;
   flex-direction: row !important; /* 竖排：· 在上，文案在下 */
   align-items: flex-start !important;
-  gap: 0.5em;
+  gap: 0;
   width: 1em;
   max-width: 1em;
   text-align: start;
@@ -406,7 +406,7 @@ main {
   flex-direction: row;
   align-items: flex-start;
   flex-wrap: nowrap;
-  gap: 0.5em;
+  gap: 0; /* 评论·回复·表情：中黑与文案贴紧 */
   white-space: normal;
   width: 1em;
   max-width: 1em;
@@ -655,7 +655,7 @@ main {
 }
 
 /*
- * 已选回应：约 3 枚高后 wrap-reverse 往右加列（超出 1em 轨）。
+ * 已选回应：每列最多 4 枚，wrap-reverse 往右最多再加 1 列（2×4，避免 3×3）。
  * z-index 高于作者轨，往右那截才能看见。
  */
 #__next .gsc-direct-reaction-buttons {
@@ -666,12 +666,13 @@ main {
   align-items: center;
   align-content: flex-start;
   gap: 0.5em;
-  /* 单枚约 1.6em，三枚 + 两档 gap ≈ 5.8em */
-  max-height: 5.8em !important;
+  /* 单枚约 1.6em，四枚 + 三档 gap ≈ 7.9em */
+  max-height: 7.9em !important;
   flex: 0 0 auto !important;
   width: max-content !important;
   min-width: 1em !important;
-  max-width: none !important;
+  /* 两列：1em + gap + 1em */
+  max-width: 2.5em !important;
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box !important;

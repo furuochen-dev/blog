@@ -197,7 +197,7 @@ a:hover {
   margin-inline: 0.5em;
   /*
    * 右边竖线 = 正文 hr：1px #eaeaea；margin-right = 线外侧 1.5em。
-   * 线内侧 1.5em 改到 iframe 主题里 padding-right（回应折列要在框内往右超出 1em 轨）。
+   * 线内侧右槽改到 iframe 主题 padding-right（回应最多两列往右超出 1em 轨）。
    */
   padding: 0;
   margin-right: 1.5em;
@@ -219,12 +219,12 @@ a:hover {
   /*
    * Giscus only auto-resizes height. In vertical-rl content grows sideways,
    * so give a real column budget; height fills .comments (already #main − 1em).
-   * 42em 正文 + 1.5em 内侧右槽（原 .comments padding-right）。
+   * 42em 正文 + 2.5em 内侧右槽（两列回应）。
    */
   height: 100% !important;
   max-height: 100% !important;
-  width: 43.5em !important;
-  min-width: 43.5em;
+  width: 44.5em !important;
+  min-width: 44.5em;
   max-width: none;
   margin: 0 !important;
   padding: 0;

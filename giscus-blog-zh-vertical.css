@@ -451,18 +451,17 @@ main {
  * 只有弹出层保持 horizontal-tb。
  */
 /*
- * 页脚：默认约 1em；回应折列时用 max-content 加宽，勿 stretch 满列。
- * 竖排 wrap 的 cross-start = 右；若满宽 + flex-start，折列会堆到右边
- * 被作者栏/iframe 裁掉。改为 max-content + flex-end（往左收）。
+ * 页脚：1em 轨为起点；回应过多用 wrap-reverse 往右（block-start）加列，
+ * 故意超出 1em 轨。z-index 压过作者栏，避免往右那截被盖住消失。
  */
 #__next .gsc-comment-footer {
   writing-mode: vertical-rl;
   text-orientation: upright;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   align-items: center;
-  align-content: flex-end;
+  align-content: flex-start;
   justify-content: flex-start;
   gap: 0.5em;
   flex: 0 0 auto;
@@ -472,6 +471,8 @@ main {
   margin: 0;
   overflow: visible;
   box-sizing: border-box;
+  position: relative;
+  z-index: 4;
 }
 
 #__next .gsc-comment-reactions {
@@ -479,9 +480,9 @@ main {
   text-orientation: upright;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   align-items: center;
-  align-content: flex-end;
+  align-content: flex-start;
   gap: 0.5em;
   flex: 0 0 auto;
   width: max-content;
@@ -489,6 +490,8 @@ main {
   max-width: none;
   margin: 0;
   overflow: visible;
+  position: relative;
+  z-index: 4;
 }
 
 /* 「N 条回复」跟页脚同轨，不再单独加 padding/margin 居中 */
@@ -646,16 +649,16 @@ main {
 }
 
 /*
- * 已选回应：最多约 3 个竖排高度，再多折到左侧下一列。
- * max-content + flex-end：从原轨往左加列，勿往右顶进作者栏。
+ * 已选回应：约 3 枚高后 wrap-reverse 往右加列（超出 1em 轨）。
+ * z-index 高于作者轨，往右那截才能看见。
  */
 #__next .gsc-direct-reaction-buttons {
   writing-mode: vertical-rl !important;
   display: flex !important;
   flex-direction: row !important;
-  flex-wrap: wrap !important;
+  flex-wrap: wrap-reverse !important;
   align-items: center;
-  align-content: flex-end;
+  align-content: flex-start;
   gap: 0.5em;
   /* 单枚约 1.6em，三枚 + 两档 gap ≈ 5.8em */
   max-height: 5.8em !important;
@@ -667,6 +670,8 @@ main {
   padding: 0 !important;
   box-sizing: border-box !important;
   overflow: visible !important;
+  position: relative;
+  z-index: 4;
 }
 
 /*
@@ -853,16 +858,16 @@ main {
 }
 
 /*
- * 回复页脚：同主评论——max-content 往左折列，勿满宽堆到右边。
+ * 回复页脚：同主评论——wrap-reverse 往右超出 1em 轨，z-index 压过作者。
  */
 #__next .gsc-reply-footer {
   writing-mode: vertical-rl;
   text-orientation: upright;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   align-items: center;
-  align-content: flex-end;
+  align-content: flex-start;
   gap: 0.5em;
   flex: 0 0 auto;
   width: max-content;
@@ -873,6 +878,8 @@ main {
   margin-top: 0.3em !important;
   overflow: visible;
   box-sizing: border-box;
+  position: relative;
+  z-index: 4;
 }
 
 #__next .gsc-reply-reactions {
@@ -880,9 +887,9 @@ main {
   text-orientation: upright;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   align-items: center;
-  align-content: flex-end;
+  align-content: flex-start;
   gap: 0.5em;
   flex: 0 0 auto;
   width: max-content;
@@ -891,6 +898,8 @@ main {
   margin: 0 !important;
   overflow: visible;
   box-sizing: border-box;
+  position: relative;
+  z-index: 4;
 }
 
 #__next .gsc-reply-footer .gsc-reactions-button {

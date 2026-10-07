@@ -193,9 +193,15 @@ a:hover {
   width: auto;
   margin: 0;
   margin-inline: 0.5em;
+  /*
+   * 右边竖线 = 正文 hr：1px #eaeaea，线两侧各 1em（hr { margin: 0 1em }）。
+   * padding-right = 内容到线；margin-right = 线到外侧。
+   */
   padding: 0;
-  padding-right: 0.25em;
+  padding-right: 1em;
+  margin-right: 1em;
   border: none;
+  border-right: 1px solid #eaeaea;
   box-sizing: border-box;
   /* visible: reaction popovers can extend near the frame edge */
   overflow: visible;

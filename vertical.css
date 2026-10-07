@@ -188,8 +188,9 @@ a:hover {
   height: 100%;
   max-height: 100%;
   width: auto;
+  /* vertical-rl: inline = 上下, block = 左右. 列间距要用 block，不能用 inline */
   margin: 0;
-  margin-inline: 1em;
+  margin-block: 1em;
   padding: 0;
   border: none;
   box-sizing: border-box;
@@ -203,7 +204,7 @@ a:hover {
 
 .giscus,
 .giscus-frame {
-  display: block;
+  display: block !important;
   /*
    * Giscus only auto-resizes height. In vertical-rl content grows sideways,
    * so give a real column budget; height follows #main, not a second 56vh.

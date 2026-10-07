@@ -443,12 +443,16 @@ main {
 }
 
 /*
- * 数字纵中横：digits 2 = 连续 1–2 位横排插在竖行里，≥3 位不合并、逐字竖排。
- * （CSS Writing Modes 标准行为，不是手写分支。）
+ * 数字在 <a class="… underline"> 里；先前 #__next a { text-orientation: mixed }
+ * 会把「1」横躺。计数链接必须 upright，再 digits 2 做纵中横。
  */
 #__next .gsc-comments-count,
+#__next .gsc-comments-count a,
 #__next .gsc-replies-count,
-#__next .gsc-reactions-count {
+#__next .gsc-replies-count a,
+#__next .gsc-reactions-count,
+#__next .gsc-reactions-count a {
+  text-orientation: upright !important;
   text-combine-upright: digits 2;
   -webkit-text-combine: digits 2;
 }
@@ -487,8 +491,13 @@ main {
   font-family: inherit;
 }
 
-#__next code,
-#__next a {
+/* 仅拉丁链接/代码可 mixed；中文计数链接见上方 upright */
+#__next code {
+  text-orientation: mixed;
+}
+
+#__next .gsc-comment-content a,
+#__next .gsc-comment-box a {
   text-orientation: mixed;
 }
 

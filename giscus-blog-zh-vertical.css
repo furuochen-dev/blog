@@ -157,8 +157,8 @@ main {
 
 /*
  * comments 仍按 column 右→左排栏。
- * 「0 个表情」绝对定位进 header 列：在「N 条评论」下、「最早/最新」上，
- * 不再占主轴，避免把整块评论区往下推。
+ * 「0 个表情」钉在 header 同列：紧接 left-header（评论数·回复数）之下。
+ * 用 CSS anchor，避免写死 top:4.5em 与「N 条回复」重叠。
  */
 #__next .gsc-main {
   display: flex;
@@ -182,9 +182,6 @@ main {
   font-size: 1em;
   position: absolute;
   z-index: 6;
-  /* 与 .gsc-header 同列（竖排栏在 comments 右侧） */
-  top: 4.5em;
-  right: 0;
   width: 1em;
   max-width: 1em;
   display: flex;
@@ -196,6 +193,19 @@ main {
   padding: 0;
   overflow: visible;
   pointer-events: auto;
+  /* 无 anchor 时：落在最早/最新上方，宁缺勿叠 */
+  right: 0;
+  top: auto;
+  bottom: 3.5em;
+}
+
+@supports (anchor-name: --x) {
+  #__next .gsc-reactions {
+    position-anchor: --gsc-left-header;
+    top: calc(anchor(bottom) + 0.5em);
+    right: anchor(right);
+    bottom: auto;
+  }
 }
 
 #__next .gsc-reactions-count {
@@ -353,6 +363,8 @@ main {
   min-width: 0;
   flex: none;
   line-height: 1;
+  /* 供「0 个表情」anchor 紧接其下 */
+  anchor-name: --gsc-left-header;
 }
 
 #__next .gsc-right-header {
@@ -369,8 +381,8 @@ main {
   align-self: stretch;
   border: none !important;
   border-inline-end: 1px solid #eaeaea;
-  padding-inline-end: 0;
-  padding-right: 0.25em;
+  /* 旁白大 padding 不要；栏间距靠 .gsc-timeline gap: 1em（同正文段距） */
+  padding: 0 !important;
   box-sizing: border-box;
   background: transparent !important;
   overflow: visible;
@@ -386,6 +398,7 @@ main {
   border-radius: 0 !important;
   box-shadow: none !important;
   background: transparent !important;
+  padding: 0 !important;
   overflow: visible;
 }
 
@@ -548,7 +561,13 @@ main {
   display: none;
 }
 
-#__next .gsc-comment-content {
+#__next .gsc-comment-header {
+  /* 盖掉 Giscus px-4 pt-2 */
+  padding: 0 !important;
+}
+
+#__next .gsc-comment-content,
+#__next .markdown.gsc-comment-content {
   writing-mode: inherit;
   text-orientation: inherit;
   font-feature-settings: inherit;
@@ -556,16 +575,37 @@ main {
   text-align: left;
   text-indent: 0;
   flex: 1 1 auto;
+  /* 盖掉 Giscus p-4；栏与栏之间用 timeline gap，不要内容四周塞白 */
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+#__next .gsc-comment-content p {
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
+
+#__next .gsc-comment-content > p:first-child {
+  margin-block-start: 0;
+}
+
+#__next .gsc-comment-content > p:last-child {
+  margin-block-end: 0;
 }
 
 #__next .gsc-comment-box {
   writing-mode: inherit;
   height: 100%;
   align-self: stretch;
+  display: flex;
+  flex-direction: column; /* 竖排：tabs | 输入区 | 底栏 横着排开 */
+  align-items: stretch;
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
   background: transparent !important;
+  box-sizing: border-box;
 }
 
 #__next .gsc-comment-box:not(.gsc-comment-box-is-reply) {
@@ -574,13 +614,60 @@ main {
   border-radius: 0 !important;
 }
 
-#__next .gsc-reply-box,
 #__next .color-box-border-info,
 #__next .rounded-md,
 #__next .rounded {
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
+}
+
+/* 「写回复」：去掉 form-control 横条，收成竖排文字 */
+#__next .gsc-reply-box {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  writing-mode: inherit;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+#__next .gsc-reply-box > button,
+#__next .gsc-reply-box .form-control {
+  appearance: none;
+  -webkit-appearance: none;
+  writing-mode: vertical-rl !important;
+  text-orientation: upright !important;
+  width: 1.5em !important;
+  max-width: 1.5em !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0.5em 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  font-family: inherit !important;
+  font-size: 1em !important;
+  font-weight: 600;
+  line-height: 1.5 !important;
+  color: #999 !important;
+  text-align: start !important;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+#__next .gsc-reply-box > button:hover,
+#__next .gsc-reply-box .form-control:hover {
+  color: #333 !important;
+  text-decoration: underline;
+  background: transparent !important;
 }
 
 #__next .gsc-comment-box-tabs {
@@ -606,23 +693,56 @@ main {
   gap: 0.5em;
 }
 
-#__next .gsc-comment-box-textarea {
-  writing-mode: vertical-rl;
-  text-orientation: upright;
+/*
+ * 输入框要拉满评论带高度。
+ * Giscus resizeTextArea() 会写 inline height（空内容很小、上限 270px），
+ * 竖排下必须 !important 盖掉；width 亦然（曾见被拧成十几 px）。
+ * 物理 height = 上下拉满；物理 width = 竖列厚度。
+ */
+#__next .gsc-comment-box-main {
+  margin: 0 !important;
+  height: 100%;
+  min-height: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+}
+
+#__next .gsc-comment-box-write,
+#__next .gsc-comment-box-preview {
+  height: 100% !important;
+  min-height: 0 !important;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+  padding: 0 !important;
+}
+
+#__next .gsc-comment-box-textarea,
+#__next textarea.gsc-comment-box-textarea {
+  writing-mode: vertical-rl !important;
+  text-orientation: upright !important;
   font-family: inherit;
   font-size: 1em !important;
   line-height: 1.5 !important;
-  width: 8em;
-  min-width: 6em;
-  max-width: 14em;
-  height: auto;
-  min-height: 16em;
-  max-height: none;
+  box-sizing: border-box !important;
+  /* 盖掉 Giscus w-full / resizeTextArea 残留的 inline width:12px 一类 */
+  width: 8em !important;
+  min-width: 6em !important;
+  max-width: 14em !important;
+  /* 盖掉 resizeTextArea 的 inline height（空框很小、上限 270px） */
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: none !important;
+  padding: 0.5em !important;
+  margin: 0 !important;
   resize: horizontal;
-}
-
-#__next .gsc-comment-box-main {
-  margin: 0.5em;
+  flex: 1 1 auto;
+  align-self: stretch;
 }
 
 /* Neutralize physical Tailwind margins under vertical-rl */

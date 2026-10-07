@@ -146,9 +146,9 @@ main {
   min-height: 100%;
   /*
    * 原 .comments 右侧内槽挪进 iframe。
-   * 1.5em：主区右侧保持一行空格；回应列在轨内处理。
+   * 1.75em：主区右侧 1.5em 空格 + 起始文字轨右侧 0.25em。
    */
-  padding-right: 1.5em;
+  padding-right: 1.75em;
   /* visible so reaction popovers are not clipped */
   overflow: visible;
 }

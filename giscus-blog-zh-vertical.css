@@ -1516,11 +1516,13 @@ main {
 }
 
 /*
- * 弹出在笑脸左侧；勿垂直居中（靠顶会飞出 iframe）。
- * .bottom → 顶对齐向下展；.top → 底对齐向上展。
+ * 弹出在笑脸左侧；勿垂直居中。
+ * giscus 的 .top/.bottom 与「往哪边展」相反：
+ *   .top（按钮偏上）→ 顶对齐、向下展，避免飞出顶边
+ *   .bottom（按钮偏下）→ 底对齐、向上展，避免飞出底边
  */
 #__next .gsc-reactions-popover,
-#__next .gsc-reactions-popover.bottom,
+#__next .gsc-reactions-popover.top,
 #__next .gsc-reactions-popover.left,
 #__next .gsc-reactions-popover.right {
   writing-mode: horizontal-tb !important;
@@ -1545,7 +1547,7 @@ main {
   transform-origin: right top !important;
 }
 
-#__next .gsc-reactions-popover.top {
+#__next .gsc-reactions-popover.bottom {
   writing-mode: horizontal-tb !important;
   text-orientation: mixed !important;
   direction: ltr;
@@ -1579,8 +1581,8 @@ main {
 }
 
 /*
- * 箭头在弹出层右边、对准笑脸（非上下指）。
- * .bottom：靠上；.top：靠下。
+ * 箭头在弹出层右边、对准笑脸。
+ * .top：靠上；.bottom：靠下。
  */
 #__next .gsc-reactions-popover.open::before,
 #__next .gsc-reactions-popover.open::after {
@@ -1597,7 +1599,7 @@ main {
 }
 
 #__next .gsc-reactions-popover.open::before,
-#__next .gsc-reactions-popover.open.bottom::before {
+#__next .gsc-reactions-popover.open.top::before {
   top: 0.15em !important;
   bottom: auto !important;
   right: -16px !important;
@@ -1606,7 +1608,7 @@ main {
 }
 
 #__next .gsc-reactions-popover.open::after,
-#__next .gsc-reactions-popover.open.bottom::after {
+#__next .gsc-reactions-popover.open.top::after {
   top: calc(0.15em + 1px) !important;
   bottom: auto !important;
   right: -14px !important;
@@ -1614,7 +1616,7 @@ main {
   border-left-color: var(--color-canvas-overlay, #fff) !important;
 }
 
-#__next .gsc-reactions-popover.open.top::before {
+#__next .gsc-reactions-popover.open.bottom::before {
   top: auto !important;
   bottom: 0.15em !important;
   right: -16px !important;
@@ -1622,7 +1624,7 @@ main {
   border-left-color: var(--color-border-default, #eaeaea) !important;
 }
 
-#__next .gsc-reactions-popover.open.top::after {
+#__next .gsc-reactions-popover.open.bottom::after {
   top: auto !important;
   bottom: calc(0.15em + 1px) !important;
   right: -14px !important;

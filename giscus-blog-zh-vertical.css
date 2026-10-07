@@ -271,7 +271,8 @@ main {
 }
 
 /*
- * 作者栏整列 1em：头像、英文名、时间同一列宽。
+ * 作者栏整列 1.5em：对齐正文 line-height: 1.5 的行轨宽度。
+ * （1em 只有字身宽；竖排下一行实际占约 1.5em。）
  * row = 沿 inline 上下堆。
  */
 #__next .gsc-comment-header,
@@ -281,8 +282,8 @@ main {
   flex-direction: row;
   align-items: flex-start;
   gap: 0.35em;
-  width: 1em !important;
-  max-width: 1em !important;
+  width: 1.5em !important;
+  max-width: 1.5em !important;
   min-width: 0 !important;
   box-sizing: border-box;
 }
@@ -291,10 +292,10 @@ main {
 #__next .gsc-comment-author img,
 #__next img.mr-2 {
   margin: 0 !important;
-  width: 1em !important;
-  height: 1em !important;
-  max-width: 1em !important;
-  max-height: 1em !important;
+  width: 1.5em !important;
+  height: 1.5em !important;
+  max-width: 1.5em !important;
+  max-height: 1.5em !important;
   flex-shrink: 0;
   object-fit: cover;
 }
@@ -304,8 +305,8 @@ main {
 #__next .gsc-comment-author .link-primary,
 #__next .gsc-comment-author .link-secondary,
 #__next .gsc-comment-author time {
-  width: 1em !important;
-  max-width: 1em !important;
+  width: 1.5em !important;
+  max-width: 1.5em !important;
   box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -448,21 +449,21 @@ main {
   flex-shrink: 0;
   writing-mode: vertical-rl;
   text-orientation: upright;
-  width: 1em !important;
-  max-width: 1em !important;
+  width: 1.5em !important;
+  max-width: 1.5em !important;
 }
 
 #__next .gsc-reply-author-avatar img {
-  width: 1em !important;
-  height: 1em !important;
-  max-width: 1em !important;
-  max-height: 1em !important;
+  width: 1.5em !important;
+  height: 1.5em !important;
+  max-width: 1.5em !important;
+  max-height: 1.5em !important;
   object-fit: cover;
 }
 
 #__next .gsc-reply-author-avatar .flex {
   flex-direction: row !important;
-  width: 1em !important;
+  width: 1.5em !important;
 }
 
 #__next .gsc-reply > .flex > .w-full,
@@ -486,16 +487,16 @@ main {
   align-items: flex-start;
   gap: 0.35em;
   writing-mode: inherit;
-  width: 1em !important;
-  max-width: 1em !important;
+  width: 1.5em !important;
+  max-width: 1.5em !important;
   box-sizing: border-box;
 }
 
 #__next .gsc-reply-author .link-primary,
 #__next .gsc-reply-author .link-secondary,
 #__next .gsc-reply-author time {
-  width: 1em !important;
-  max-width: 1em !important;
+  width: 1.5em !important;
+  max-width: 1.5em !important;
   overflow: hidden;
   text-overflow: ellipsis;
 }

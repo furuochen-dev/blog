@@ -442,6 +442,17 @@ main {
   color: #333;
 }
 
+/*
+ * 数字纵中横：digits 2 = 连续 1–2 位横排插在竖行里，≥3 位不合并、逐字竖排。
+ * （CSS Writing Modes 标准行为，不是手写分支。）
+ */
+#__next .gsc-comments-count,
+#__next .gsc-replies-count,
+#__next .gsc-reactions-count {
+  text-combine-upright: digits 2;
+  -webkit-text-combine: digits 2;
+}
+
 /* 「由 giscus 提供支持」：去斜体，去掉 text-sm，与「N 条评论」同字号 */
 #__next .gsc-left-header > em,
 #__next .gsc-left-header > em.text-sm,

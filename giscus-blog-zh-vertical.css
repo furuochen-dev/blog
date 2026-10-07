@@ -297,7 +297,7 @@ main {
 #__next .gsc-comment-author-avatar {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center; /* 1em 头像在 1.5em 轨正中 */
   gap: 0.5em;
   width: 1.5em !important;
   max-width: 1.5em !important;
@@ -321,10 +321,10 @@ main {
 #__next .gsc-comment-author img,
 #__next img.mr-2 {
   margin: 0 !important;
-  width: 1.5em !important;
-  height: 1.5em !important;
-  max-width: 1.5em !important;
-  max-height: 1.5em !important;
+  width: 1em !important;
+  height: 1em !important;
+  max-width: 1em !important;
+  max-height: 1em !important;
   flex-shrink: 0;
   object-fit: cover;
 }
@@ -664,27 +664,29 @@ main {
   flex-shrink: 0;
   writing-mode: vertical-rl;
   text-orientation: upright;
+  display: grid !important;
+  place-items: center !important;
   width: 1.5em !important;
   max-width: 1.5em !important;
   margin: 0 !important;
   padding: 0 !important;
+  box-sizing: border-box;
 }
 
 #__next .gsc-reply-author-avatar a,
 #__next .gsc-reply-author-avatar .flex {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: flex-start;
+  display: grid !important;
+  place-items: center !important;
   width: 1.5em !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
 #__next .gsc-reply-author-avatar img {
-  width: 1.5em !important;
-  height: 1.5em !important;
-  max-width: 1.5em !important;
-  max-height: 1.5em !important;
+  width: 1em !important;
+  height: 1em !important;
+  max-width: 1em !important;
+  max-height: 1em !important;
   margin: 0 !important;
   object-fit: cover;
 }
@@ -707,7 +709,7 @@ main {
 #__next .gsc-reply-header {
   position: absolute;
   inset-block-start: 0;
-  inset-inline-start: calc(1.5em + 0.5em);
+  inset-inline-start: calc(1em + 0.5em); /* 头像 1em + 间距 */
   /* 相对 .flex 的 gap:0.5em，end 贴 0 会整段多探出 0.5em */
   inset-inline-end: 0.5em;
   z-index: 1;

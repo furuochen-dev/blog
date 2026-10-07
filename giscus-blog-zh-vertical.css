@@ -443,18 +443,29 @@ main {
 }
 
 /*
- * 数字在 <a class="… underline"> 里；先前 #__next a { text-orientation: mixed }
- * 会把「1」横躺。计数链接必须 upright，再 digits 2 做纵中横。
+ * 中文计数 / 相对时间：upright + digits 2（「15」纵中横，「小时前」竖排）。
+ * 英文登录名：mixed（整串侧放，不要 upright 逐字竖立）。
  */
 #__next .gsc-comments-count,
 #__next .gsc-comments-count a,
 #__next .gsc-replies-count,
 #__next .gsc-replies-count a,
 #__next .gsc-reactions-count,
-#__next .gsc-reactions-count a {
+#__next .gsc-reactions-count a,
+#__next .gsc-comment-author time,
+#__next .gsc-comment-author a:has(time),
+#__next .gsc-comment-header time {
   text-orientation: upright !important;
   text-combine-upright: digits 2;
   -webkit-text-combine: digits 2;
+}
+
+#__next .gsc-comment-author-avatar,
+#__next .gsc-comment-author-avatar span,
+#__next .gsc-comment-author-avatar .link-primary {
+  text-orientation: mixed !important;
+  text-combine-upright: none;
+  -webkit-text-combine: none;
 }
 
 /* 「由 giscus 提供支持」：去斜体，去掉 text-sm，与「N 条评论」同字号 */

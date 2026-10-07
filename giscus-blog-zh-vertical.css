@@ -868,10 +868,19 @@ main {
   background: transparent !important;
 }
 
-/* 等宽字体切换：无用，隐藏 */
+/* 等宽字体切换：无用，隐藏（含 tabs 右侧那一坨） */
 #__next .gsc-toolbar-item,
-#__next .gsc-comment-box-md-toolbar {
+#__next .gsc-comment-box-md-toolbar,
+#__next .gsc-comment-box-tabs .gsc-toolbar-item,
+#__next button.gsc-toolbar-item {
   display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 #__next .gsc-comment-box-tabs {
@@ -1199,8 +1208,9 @@ main {
 }
 
 /*
- * 笑脸：1.5em 方盒 + grid 居中。
- * 不要在本元素上写 font-size:0，否则 width/height 的 em 会算成 0。
+ * 笑脸：1.5em 方盒居中。
+ * summary 默认会留 disclosure 标记槽，图标会被挤到右边——必须清掉。
+ * 不要 font-size:0（em 宽高会变 0）。
  */
 #__next .gsc-reactions-menu {
   display: flex !important;
@@ -1216,12 +1226,13 @@ main {
 }
 
 #__next .gsc-reactions-button,
-#__next summary.gsc-reactions-button {
+#__next summary.gsc-reactions-button,
+#__next .gsc-reactions-button.gsc-social-reaction-summary-item {
   writing-mode: horizontal-tb !important;
   text-orientation: mixed !important;
-  display: grid !important;
-  place-items: center !important;
-  place-content: center !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   box-sizing: border-box !important;
   width: 1.5em !important;
   height: 1.5em !important;
@@ -1234,28 +1245,41 @@ main {
   border-width: 1px !important;
   line-height: 1 !important;
   font-size: 1em !important;
+  text-align: center !important;
   list-style: none !important;
   appearance: none !important;
   -webkit-appearance: none !important;
   flex-shrink: 0 !important;
 }
 
-#__next .gsc-reactions-button::-webkit-details-marker,
-#__next .gsc-reactions-button::marker,
+/* WebKit / Firefox：去掉 summary 左侧三角占位，否则 SVG 视觉局右 */
+#__next summary.gsc-reactions-button::-webkit-details-marker {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+#__next summary.gsc-reactions-button::marker {
+  content: "" !important;
+  font-size: 0 !important;
+}
+
 #__next .gsc-reactions-button::before {
   display: none !important;
   content: none !important;
 }
 
 #__next .gsc-reactions-button .octicon,
-#__next .gsc-reactions-button svg {
+#__next .gsc-reactions-button svg,
+#__next summary.gsc-reactions-button svg {
   display: block !important;
   width: 1em !important;
   height: 1em !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
   padding: 0 !important;
   border: 0 !important;
-  vertical-align: top !important;
+  /* 盖掉 inline style="vertical-align: text-bottom" */
+  vertical-align: middle !important;
   position: static !important;
   inset: auto !important;
   top: auto !important;

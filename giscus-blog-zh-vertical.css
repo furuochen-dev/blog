@@ -456,21 +456,18 @@ main {
 }
 
 /*
- * 「N 条回复」：1.5em 行轨，左右各 0.25em padding-block 夹出中间 1em。
- * vertical-rl 里 grid/margin:auto 容易贴边；对称 padding-block 最稳。
+ * 「N 条回复」：1em 行轨，左右各 0.25em margin-block（凑进页脚 1.5em）。
  */
 #__next .gsc-comment-replies-count {
   writing-mode: vertical-rl !important;
   text-orientation: upright !important;
   display: block !important;
-  width: 1.5em !important;
-  max-width: 1.5em !important;
+  width: 1em !important;
+  max-width: 1em !important;
   box-sizing: border-box !important;
-  margin: 0 !important;
-  margin-right: 0 !important; /* 盖掉 Giscus mr-4 */
-  margin-left: 0 !important;
-  padding-inline: 0 !important;
-  padding-block: 0.25em !important;
+  margin: 0 !important; /* 先清掉 Giscus mr-4 等 */
+  margin-block: 0.25em !important;
+  padding: 0 !important;
 }
 
 #__next .gsc-comment-replies-count .text-xs {
@@ -478,9 +475,9 @@ main {
   text-orientation: upright !important;
   display: block !important;
   font-size: 1em !important;
-  line-height: 1.5 !important;
-  width: 100% !important; /* 吃掉轨内剩余 1em */
-  max-width: none !important;
+  line-height: 1 !important;
+  width: 1em !important;
+  max-width: 1em !important;
   margin: 0 !important;
   padding: 0 !important;
   word-spacing: -1em;

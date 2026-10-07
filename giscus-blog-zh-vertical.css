@@ -165,7 +165,7 @@ main {
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  gap: 1em;
+  gap: 1.5em;
   width: max-content;
   min-width: 100%;
   height: 100%;
@@ -248,7 +248,7 @@ main {
 #__next .gsc-comments {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 1.5em;
   height: 100%;
   align-items: stretch;
   overflow: visible;
@@ -258,7 +258,7 @@ main {
 #__next .gsc-timeline {
   display: flex;
   flex-direction: column;
-  gap: 1em; /* 两条一级评论之间 1em */
+  gap: 1.5em; /* 两条一级评论之间：同正文段距 */
   height: 100%;
   flex: 1 1 auto;
 }
@@ -400,7 +400,7 @@ main {
   align-self: stretch;
   border: none !important;
   border-inline-end: 1px solid #eaeaea;
-  /* 旁白大 padding 不要；栏间距靠 .gsc-timeline gap: 1em（同正文段距） */
+  /* 旁白大 padding 不要；栏间距靠 .gsc-timeline gap: 1.5em（同正文段距） */
   padding: 0 !important;
   box-sizing: border-box;
   background: transparent !important;
@@ -847,8 +847,8 @@ main {
 }
 
 #__next .gsc-comment-content p {
-  margin-block-start: 1em;
-  margin-block-end: 1em;
+  margin-block-start: 1.5em;
+  margin-block-end: 1.5em;
 }
 
 #__next .gsc-comment-content > p:first-child {

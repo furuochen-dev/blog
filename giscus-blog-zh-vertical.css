@@ -336,7 +336,8 @@ main {
   max-width: 1.5em !important;
   box-sizing: border-box;
   padding: 0 !important;
-  margin: 0 !important;
+  margin-block: 0 !important;
+  margin-inline-end: 0 !important;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -642,7 +643,8 @@ main {
   max-width: 1.5em !important;
   box-sizing: border-box;
   padding: 0 !important;
-  margin: 0 !important;
+  margin-block: 0 !important;
+  margin-inline-end: 0 !important;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -780,14 +782,17 @@ main {
 }
 
 /*
- * 二级回复带：inset 底；顶上 1em 后才是嵌套正文。
- * 细线用伪元素画在物理顶边，并向左伸出指到「写回复」（按钮不进 1em 区）。
+ * 二级回复就画在 .gsc-replies 这一层：
+ * inset 底 + 顶上 1em 区里一条细线表示从属（不要往写回复上绕伪元素）。
  */
 #__next .gsc-replies {
   writing-mode: inherit;
   text-orientation: inherit;
-  position: relative;
+  display: flex;
+  flex-direction: column; /* 竖排：各条回复右→左 */
+  align-items: stretch;
   align-self: stretch;
+  gap: 0.5em;
   height: 100%;
   box-sizing: border-box;
   margin: 0 !important;
@@ -795,6 +800,7 @@ main {
   padding-inline-start: 1em !important;
   border: none !important;
   border-radius: 0 !important;
+  border-inline-start: 1px solid #333 !important; /* 顶线 */
   background-color: var(--color-canvas-inset) !important;
   box-shadow: none !important;
 }
@@ -803,20 +809,7 @@ main {
   background-color: var(--color-canvas-inset) !important;
 }
 
-/* 顶线：盖住回复带顶边，并向左伸进「写回复」列 */
-#__next .gsc-replies::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: -1.5em;
-  height: 1px;
-  background: #333;
-  z-index: 2;
-  pointer-events: none;
-}
-
-/* 「写回复」贴顶；自身不再加 border/padding 以免整列沉到线下 */
+/* 「写回复」贴顶，与 .gsc-replies 顶线齐平；无线条伪元素 */
 #__next .gsc-reply-box,
 #__next .gsc-comment-box-is-reply {
   display: flex;
@@ -825,7 +818,6 @@ main {
   justify-content: flex-start;
   align-self: stretch;
   writing-mode: inherit;
-  position: relative;
   height: 100%;
   box-sizing: border-box;
   margin: 0 !important;
@@ -839,19 +831,6 @@ main {
 #__next .gsc-reply-box {
   width: 1.5em;
   max-width: 1.5em;
-}
-
-/* 无二级回复时：短顶线仍指到按钮 */
-#__next .gsc-reply-box::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: #333;
-  z-index: 2;
-  pointer-events: none;
 }
 
 #__next .gsc-reply-box > button,
@@ -1183,10 +1162,16 @@ main {
 }
 
 /* 隐藏「选择您的回应」文案区与分隔线，只留表情格 */
-#__next .gsc-reactions-popover > p,
+#__next .gsc-reactions-popover p,
 #__next .gsc-reactions-popover > .my-2.border-t,
-#__next .gsc-reactions-popover > .border-t {
+#__next .gsc-reactions-popover > .border-t,
+#__next .gsc-reactions-popover > div.my-2.border-t {
   display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: none !important;
 }
 
 /* 笑脸：与列宽同轨的方盒 + grid 居中（躲开 summary/octicon 基线偏移） */

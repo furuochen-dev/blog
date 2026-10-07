@@ -461,8 +461,8 @@ main {
   white-space: normal;
 }
 
-#__next .gsc-comment-footer .gsc-reactions-button,
-#__next .gsc-comment-footer .gsc-social-reaction-summary-item:not(.gsc-upvote-button) {
+/* 仅笑脸触发器保持横排；已选 👍1 等走下方竖排栈 */
+#__next .gsc-comment-footer .gsc-reactions-button {
   writing-mode: horizontal-tb;
   text-orientation: mixed;
 }
@@ -521,6 +521,76 @@ main {
   color: inherit;
   writing-mode: vertical-rl !important;
   text-orientation: upright !important;
+}
+
+/*
+ * 已选表情（👍1）：同赞同——上符下数，1em 列，去胶囊。
+ * 表情本身 horizontal-tb，避免竖排把 glyph 拧歪。
+ */
+#__next .gsc-direct-reaction-button.gsc-social-reaction-summary-item,
+#__next .gsc-direct-reaction-button {
+  writing-mode: vertical-rl !important;
+  text-orientation: upright !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0;
+  width: 1em !important;
+  max-width: 1em !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  font-family: inherit !important;
+  font-size: 1em !important;
+  font-weight: 600;
+  line-height: 1.5 !important;
+  color: #999 !important;
+}
+
+#__next .gsc-direct-reaction-button.has-reacted {
+  color: #333 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+#__next .gsc-direct-reaction-button-emoji {
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  display: block !important;
+  width: 1em !important;
+  font-size: 1em !important;
+  line-height: 1 !important;
+  text-align: center;
+  flex: none;
+}
+
+#__next .gsc-direct-reaction-button .gsc-social-reaction-summary-item-count {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: none !important;
+  font-size: 1em !important;
+  font-weight: 600;
+  line-height: 1.5 !important;
+  color: inherit;
+  writing-mode: vertical-rl !important;
+  text-orientation: upright !important;
+}
+
+#__next .gsc-direct-reaction-buttons {
+  writing-mode: vertical-rl !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  gap: 0.5em;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /*
@@ -716,8 +786,7 @@ main {
   overflow: visible;
 }
 
-#__next .gsc-reply-footer .gsc-reactions-button,
-#__next .gsc-reply-footer .gsc-social-reaction-summary-item {
+#__next .gsc-reply-footer .gsc-reactions-button {
   writing-mode: horizontal-tb;
   text-orientation: mixed;
 }
@@ -1295,28 +1364,17 @@ main {
   align-self: center !important;
 }
 
-#__next .gsc-emoji-button,
-#__next .gsc-social-reaction-summary-item:not(.gsc-upvote-button),
-#__next .gsc-direct-reaction-button {
+/* 弹出层里的选表情格仍横排 */
+#__next .gsc-emoji-button {
   writing-mode: horizontal-tb !important;
   text-orientation: mixed !important;
   box-sizing: border-box;
-}
-
-#__next .gsc-emoji-button {
   display: inline-flex !important;
   align-items: center;
   justify-content: center;
   width: 2rem !important;
   height: 2rem !important;
   margin: 0 !important;
-}
-
-#__next .gsc-direct-reaction-buttons {
-  writing-mode: horizontal-tb !important;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
 }
 
 #__next .btn,

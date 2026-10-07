@@ -338,7 +338,8 @@ main {
 
 #__next .gsc-comment {
   display: flex;
-  flex-direction: row; /* 竖排：整条评论自上而下，勿把侧栏甩到左边 */
+  /* column = 栏右→左：头像/名在右，正文在左 */
+  flex-direction: column;
   height: 100%;
   align-self: stretch;
   border: none !important;
@@ -352,7 +353,7 @@ main {
   height: 100%;
   box-sizing: border-box;
   display: flex;
-  flex-direction: row; /* header → 正文 → footer(表情) 上下排 */
+  flex-direction: column;
   /* No card chrome — article body has no boxed frames */
   border: none !important;
   border-radius: 0 !important;
@@ -370,8 +371,82 @@ main {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.35em;
-  margin-block-start: 0.5em;
+  margin: 0;
   overflow: visible;
+}
+
+/*
+ * 回复：默认 .flex 是 row → 竖排里变成「头像在上、正文在下」。
+ * 改成 column → 头像/用户名在右栏，回复正文在左栏。
+ */
+#__next .gsc-reply {
+  writing-mode: inherit;
+  text-orientation: inherit;
+  padding: 0.5em 0;
+  overflow: visible;
+}
+
+#__next .gsc-reply > .flex {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start;
+  gap: 0.5em;
+  writing-mode: inherit;
+}
+
+#__next .gsc-reply-author-avatar {
+  flex-shrink: 0;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
+#__next .gsc-reply-author-avatar .flex {
+  flex-direction: row !important;
+}
+
+#__next .gsc-reply > .flex > .w-full,
+#__next .gsc-reply > .flex > [class*="min-w-0"] {
+  writing-mode: inherit;
+  text-orientation: inherit;
+  width: auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  margin-left: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.35em;
+}
+
+#__next .gsc-reply-header,
+#__next .gsc-reply-author {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.35em;
+  writing-mode: inherit;
+}
+
+#__next .gsc-reply-content {
+  writing-mode: inherit;
+  text-orientation: inherit;
+  width: auto !important;
+  padding: 0 !important;
+}
+
+#__next .gsc-reply-footer,
+#__next .gsc-reply-reactions {
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em;
+  margin: 0 !important;
+  overflow: visible;
+}
+
+#__next .gsc-tl-line {
+  display: none;
 }
 
 #__next .gsc-comment-content {

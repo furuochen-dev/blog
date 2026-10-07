@@ -381,6 +381,21 @@ main {
   padding: 0 !important;
 }
 
+/* 「已编辑」是三个字的一条竖列，不允许在作者栏里折成两段 */
+#__next .gsc-comment-edited {
+  writing-mode: vertical-rl !important;
+  text-orientation: upright !important;
+  white-space: nowrap !important;
+  width: 1.5em !important;
+  max-width: 1.5em !important;
+  height: auto !important;
+  min-height: 4.5em !important; /* 3 字 × line-height 1.5 */
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.5 !important;
+  overflow: visible !important;
+}
+
 /*
  * 一条评论在上、最早/最新在下（竖排 band 顶底对齐），同列宽 1em。
  * header 拉满高度后 space-between。

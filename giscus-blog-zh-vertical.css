@@ -810,7 +810,25 @@ main {
   margin: 0 !important;
 }
 
-#__next .gsc-reply-footer,
+/*
+ * 回复页脚轨：内容宽 1em，左右各 0.25em margin-block（同 1em 头像坐进 1.5em 作者轨）。
+ */
+#__next .gsc-reply-footer {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.5em;
+  width: 1em;
+  max-width: 1em;
+  margin: 0 !important;
+  margin-block: 0.25em !important;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
 #__next .gsc-reply-reactions {
   writing-mode: vertical-rl;
   text-orientation: upright;
@@ -821,7 +839,6 @@ main {
   gap: 0.5em;
   width: 1em;
   max-width: 1em;
-  /* 竖排 column 下 margin-block 会在正文|页脚之间挤出空隙，勿用 */
   margin: 0 !important;
   overflow: visible;
   box-sizing: border-box;

@@ -144,7 +144,8 @@ main {
   line-height: 1.5;
   height: 100%;
   min-height: 100%;
-  overflow: auto;
+  /* visible so reaction popovers are not clipped */
+  overflow: visible;
 }
 
 #__next,
@@ -154,22 +155,64 @@ main {
   min-height: 100%;
 }
 
-/* column flex → adjacent columns (RTL), NOT stacked top/bottom rows */
+/*
+ * row = 沿 inline（上下）堆：先「0 个表情」，再评论区。
+ * comments 内部再用 column 做右→左栏。
+ */
 #__next .gsc-main {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
-  gap: 1em;
+  gap: 0.75em;
   width: max-content;
   min-width: 100%;
   height: 100%;
   font-family: inherit;
   font-size: 1em;
+  overflow: visible;
 }
 
-#__next .gsc-reactions,
-#__next .gsc-comments,
+#__next .gsc-reactions {
+  writing-mode: inherit;
+  text-orientation: inherit;
+  font-family: inherit;
+  font-size: 1em;
+  display: flex;
+  flex-direction: row;
+  flex: none;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5em;
+  width: 1em;
+  max-width: 1em;
+  height: auto;
+  align-self: flex-start;
+  overflow: visible;
+}
+
+#__next .gsc-reactions-count {
+  width: 1em;
+  max-width: 1em;
+  text-align: start;
+  margin: 0;
+}
+
+#__next .gsc-reactions > div.flex {
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  display: flex !important;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.35em;
+  margin: 0 !important;
+  width: auto;
+  max-width: none;
+  overflow: visible;
+}
+
 #__next .gsc-timeline {
   writing-mode: inherit;
   text-orientation: inherit;
@@ -177,14 +220,24 @@ main {
   font-size: 1em;
   height: 100%;
   align-self: stretch;
+  overflow: visible;
 }
 
 #__next .gsc-comments {
+  writing-mode: inherit;
+  text-orientation: inherit;
+  font-family: inherit;
+  font-size: 1em;
   display: flex;
   flex-direction: column;
   gap: 1em;
-  height: 100%;
+  flex: 1 1 auto;
+  /* 吃掉表情区以下的剩余高度，勿再写 100% 以免顶出 band */
+  height: auto;
+  min-height: 0;
+  align-self: stretch;
   align-items: stretch;
+  overflow: visible;
 }
 
 #__next .gsc-timeline {
@@ -283,25 +336,40 @@ main {
 
 #__next .gsc-comment {
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* 竖排：整条评论自上而下，勿把侧栏甩到左边 */
   height: 100%;
   align-self: stretch;
   border: none !important;
   border-inline-end: 1px solid #eaeaea;
   padding-inline-end: 0.75em;
   background: transparent !important;
+  overflow: visible;
 }
 
 #__next .gsc-comment > div {
   height: 100%;
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* header → 正文 → footer(表情) 上下排 */
   /* No card chrome — article body has no boxed frames */
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
   background: transparent !important;
+  overflow: visible;
+}
+
+#__next .gsc-comment-footer,
+#__next .gsc-comment-reactions {
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35em;
+  margin-block-start: 0.5em;
+  overflow: visible;
 }
 
 #__next .gsc-comment-content {
@@ -549,6 +617,69 @@ main {
 #__next .gsc-left-header > em,
 #__next .gsc-left-header em {
   display: none !important;
+}
+
+/*
+ * 表情弹出层：必须横排盒模型。祖先 vertical-rl 会把 width:146px 拧成细条。
+ */
+#__next .gsc-reactions-menu,
+#__next .gsc-comment-reactions .gsc-reactions-menu {
+  position: relative;
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  overflow: visible !important;
+  z-index: 30;
+}
+
+#__next .gsc-reactions-popover,
+#__next .gsc-reactions-popover.open {
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  direction: ltr;
+  position: absolute !important;
+  width: 146px !important;
+  min-width: 146px !important;
+  max-width: 146px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+  z-index: 40 !important;
+  inset: auto;
+}
+
+#__next .gsc-reactions-popover.bottom {
+  top: 2.25rem !important;
+  left: -0.375rem !important;
+  right: auto !important;
+  bottom: auto !important;
+}
+
+#__next .gsc-emoji-button,
+#__next .gsc-reactions-button,
+#__next .gsc-social-reaction-summary-item,
+#__next .gsc-direct-reaction-button,
+#__next .gsc-upvote-button {
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  box-sizing: border-box;
+}
+
+#__next .gsc-emoji-button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 2rem !important;
+  height: 2rem !important;
+  margin: 0 !important;
+}
+
+#__next .gsc-direct-reaction-buttons {
+  writing-mode: horizontal-tb !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em;
 }
 
 #__next .btn,

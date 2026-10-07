@@ -196,7 +196,8 @@ a:hover {
   padding: 0;
   border: none;
   box-sizing: border-box;
-  overflow: hidden;
+  /* visible: reaction popovers can extend near the frame edge */
+  overflow: visible;
   color: #333;
   background: #fff;
   color-scheme: light;
@@ -225,7 +226,7 @@ a:hover {
 }
 
 .giscus {
-  overflow: hidden;
+  overflow: visible;
   line-height: normal;
 }
 

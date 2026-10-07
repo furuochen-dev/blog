@@ -557,8 +557,8 @@ main {
 }
 
 /*
- * 已选表情（👍1）：上符下数；表情略缩小，数字 0.5em 横排以便多位。
- * 去胶囊、压掉 has-reacted 亮色。
+ * 已选表情（👍1）：上符下数；表情 0.7em、数字 0.5em 横排以便多位。
+ * 去胶囊；has-reacted 颜色保持原样，不压淡。
  */
 #__next .gsc-direct-reaction-button.gsc-social-reaction-summary-item,
 #__next .gsc-direct-reaction-button {
@@ -588,10 +588,8 @@ main {
   box-sizing: border-box;
 }
 
-#__next .gsc-direct-reaction-button.has-reacted,
-#__next .gsc-direct-reaction-button.has-reacted.color-bg-info,
-#__next .gsc-direct-reaction-button.color-bg-info {
-  color: #999 !important;
+#__next .gsc-direct-reaction-button.has-reacted {
+  color: #333 !important;
   background: transparent !important;
   border: none !important;
 }
@@ -615,7 +613,7 @@ main {
   font-size: 0.5em !important;
   font-weight: 600;
   line-height: 1 !important;
-  color: #999 !important;
+  color: inherit;
   /* 横排，多位数字左右排开 */
   writing-mode: horizontal-tb !important;
   text-orientation: mixed !important;

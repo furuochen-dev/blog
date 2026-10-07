@@ -1313,18 +1313,17 @@ main {
 }
 
 /*
- * 笑脸：1.5em 行轨，0.5em 图标居中（两侧各余 0.5em/2，与赞同同构）。
- * 不用外 margin 撑轨，避免把兄弟控件挤去右边。
+ * 添加回应：按钮本体 0.5em，落在页脚 1.5em 行轨正中。
  */
 #__next .gsc-reactions-menu {
   display: grid !important;
   place-items: center !important;
-  width: 1.5em !important;
-  height: 1.5em !important;
-  min-width: 1.5em !important;
-  min-height: 1.5em !important;
-  max-width: 1.5em !important;
-  max-height: 1.5em !important;
+  width: 0.5em !important;
+  height: 0.5em !important;
+  min-width: 0.5em !important;
+  min-height: 0.5em !important;
+  max-width: 0.5em !important;
+  max-height: 0.5em !important;
   box-sizing: border-box;
   flex-shrink: 0;
   font-size: 1em !important;
@@ -1341,15 +1340,15 @@ main {
   place-items: center !important;
   place-content: center !important;
   box-sizing: border-box !important;
-  width: 1.5em !important;
-  height: 1.5em !important;
-  min-width: 1.5em !important;
-  min-height: 1.5em !important;
-  max-width: 1.5em !important;
-  max-height: 1.5em !important;
+  width: 0.5em !important;
+  height: 0.5em !important;
+  min-width: 0.5em !important;
+  min-height: 0.5em !important;
+  max-width: 0.5em !important;
+  max-height: 0.5em !important;
   margin: 0 !important;
   padding: 0 !important;
-  border-width: 1px !important;
+  border: none !important;
   line-height: 1 !important;
   font-size: 1em !important;
   text-align: center !important;
@@ -1357,6 +1356,7 @@ main {
   appearance: none !important;
   -webkit-appearance: none !important;
   flex-shrink: 0 !important;
+  background: transparent !important;
 }
 
 #__next summary.gsc-reactions-button::-webkit-details-marker {

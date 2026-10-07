@@ -240,7 +240,18 @@ main {
   gap: 0.35em;
 }
 
-#__next .gsc-header,
+/* 一条评论 | 最早/最新：同一竖列节奏，勿被 flex 撑宽 */
+#__next .gsc-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 0.5em;
+  white-space: normal;
+  width: auto;
+  max-width: none;
+}
+
 #__next .gsc-left-header {
   display: flex;
   flex-direction: row;
@@ -248,6 +259,11 @@ main {
   flex-wrap: nowrap;
   gap: 0.5em;
   white-space: normal;
+  width: 1em;
+  max-width: 1em;
+  min-width: 0;
+  flex: none;
+  line-height: 1;
 }
 
 #__next .gsc-comment {
@@ -368,40 +384,56 @@ main {
 }
 
 /*
- * 最早 / 最新：不要做成按钮。
- * 与「N 条评论」同级文字——未选灰色，选中黑色 + 左边下划线（竖排 underline）。
+ * 最早 / 最新：纯文字，单列宽（1em）与「N 条评论」同轨。
+ * Giscus 默认 BtnGroup-item 是 inline-flex + padding，竖排下会胖出一列。
+ * vertical-rl 里 width = 列厚（block size）。
  */
 #__next .gsc-right-header.BtnGroup,
 #__next .BtnGroup {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 0.75em;
+  display: flex !important;
+  flex-direction: row; /* 最早、最新落在同一竖列里上下排 */
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0;
+  row-gap: 0.5em;
   margin: 0;
-  padding: 0;
+  padding: 0 !important;
   list-style: none;
   background: transparent !important;
   border: none !important;
-  border-radius: 0;
+  border-radius: 0 !important;
   writing-mode: vertical-rl;
   text-orientation: upright;
+  width: 1em !important;
+  max-width: 1em !important;
+  min-width: 0 !important;
+  box-sizing: border-box;
+  line-height: 1;
 }
 
 #__next .BtnGroup-item {
-  display: block;
-  margin: 0;
+  display: block !important;
+  margin: 0 !important;
   padding: 0 !important;
   border: none !important;
   border-radius: 0 !important;
   background: transparent !important;
   writing-mode: vertical-rl;
   text-orientation: upright;
+  width: 1em !important;
+  max-width: 1em !important;
+  min-width: 0 !important;
+  box-sizing: border-box;
+  line-height: 1;
+  flex: none;
 }
 
 #__next .BtnGroup-item .btn,
 #__next .BtnGroup .btn {
-  display: inline;
-  margin: 0;
+  display: block !important;
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0 !important;
   padding: 0 !important;
   border: none !important;
   border-radius: 0 !important;
@@ -410,12 +442,19 @@ main {
   font-family: inherit;
   font-size: 1em !important;
   font-weight: 600;
-  line-height: 1.5 !important;
+  line-height: 1 !important;
   color: #999 !important;
   writing-mode: vertical-rl !important;
   text-orientation: upright !important;
   text-decoration: none !important;
+  text-underline-offset: 0.15em;
   cursor: pointer;
+  width: 1em !important;
+  max-width: 1em !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  box-sizing: border-box;
 }
 
 #__next .BtnGroup-item .btn:hover,
@@ -425,12 +464,27 @@ main {
   background: transparent !important;
 }
 
+#__next .BtnGroup-item--selected,
+#__next .BtnGroup-item.BtnGroup-item--selected {
+  background: transparent !important;
+  border: none !important;
+}
+
 #__next .BtnGroup-item--selected .btn,
 #__next .BtnGroup-item[aria-current="true"] .btn {
   color: #333 !important;
   font-weight: 600;
   text-decoration: underline !important;
   background: transparent !important;
+}
+
+/* 评论数也收成单列厚，和最早/最新对齐 */
+#__next .gsc-comments-count,
+#__next .gsc-comments-count a,
+#__next .gsc-replies-count,
+#__next .gsc-reactions-count {
+  line-height: 1 !important;
+  max-width: 1em;
 }
 
 /* 与「N 条评论」字重/字号对齐 */

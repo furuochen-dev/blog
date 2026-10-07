@@ -202,7 +202,7 @@ main {
 @supports (anchor-name: --x) {
   #__next .gsc-reactions {
     position-anchor: --gsc-left-header;
-    top: calc(anchor(bottom) + 0.5em);
+    top: calc(anchor(bottom) + 2em);
     right: anchor(right);
     bottom: auto;
   }
@@ -449,43 +449,27 @@ main {
 }
 
 /*
- * 回复：默认 .flex 是 row → 竖排里变成「头像在上、正文在下」。
- * 改成 column → 头像/用户名在右栏，回复正文在左栏。
+ * 回复：头像+名称+时间同一 1.5em 列（同主评论作者栏）。
+ * DOM 里头像与 .gsc-reply-author 是兄弟，用绝对定位收进右侧一轨；
+ * 正文/footer 在流里，block-start 留出 1.5em。
  */
 #__next .gsc-reply {
   writing-mode: inherit;
   text-orientation: inherit;
-  padding: 0.5em 0;
+  padding: 0;
   overflow: visible;
 }
 
 #__next .gsc-reply > .flex {
   display: flex !important;
   flex-direction: column !important;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 0.5em;
   writing-mode: inherit;
-}
-
-#__next .gsc-reply-author-avatar {
-  flex-shrink: 0;
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-  width: 1.5em !important;
-  max-width: 1.5em !important;
-}
-
-#__next .gsc-reply-author-avatar img {
-  width: 1.5em !important;
-  height: 1.5em !important;
-  max-width: 1.5em !important;
-  max-height: 1.5em !important;
-  object-fit: cover;
-}
-
-#__next .gsc-reply-author-avatar .flex {
-  flex-direction: row !important;
-  width: 1.5em !important;
+  position: relative;
+  box-sizing: border-box;
+  /* vertical-rl：block-start = 右，留给作者轨 */
+  padding-block-start: 1.5em !important;
 }
 
 #__next .gsc-reply > .flex > .w-full,
@@ -496,10 +480,40 @@ main {
   min-width: 0 !important;
   margin: 0 !important;
   margin-left: 0 !important;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0.5em;
+  display: contents;
+}
+
+#__next .gsc-reply-author-avatar {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: 1;
+  flex-shrink: 0;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  width: 1.5em !important;
+  max-width: 1.5em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#__next .gsc-reply-author-avatar a,
+#__next .gsc-reply-author-avatar .flex {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start;
+  width: 1.5em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#__next .gsc-reply-author-avatar img {
+  width: 1.5em !important;
+  height: 1.5em !important;
+  max-width: 1.5em !important;
+  max-height: 1.5em !important;
+  margin: 0 !important;
+  object-fit: cover;
 }
 
 #__next .gsc-reply-header,
@@ -511,6 +525,29 @@ main {
   writing-mode: inherit;
   width: 1.5em !important;
   max-width: 1.5em !important;
+  box-sizing: border-box;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 名称栏紧接头像下方，同列 */
+#__next .gsc-reply-header {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: calc(1.5em + 0.5em);
+  z-index: 1;
+}
+
+#__next .gsc-reply-author a.flex,
+#__next .gsc-reply-author a.min-w-0 {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start;
+  width: 1.5em !important;
+  max-width: 1.5em !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
   box-sizing: border-box;
 }
 
@@ -526,10 +563,37 @@ main {
   text-overflow: ellipsis;
 }
 
-#__next .gsc-reply-author > span.link-primary,
-#__next .gsc-reply-author > span {
+/* 仅用户名 span 上下 0.5em（与主评论一致） */
+#__next .gsc-reply-author span.link-primary,
+#__next .gsc-reply-author .link-primary {
   padding-inline: 0.5em !important;
   padding-block: 0 !important;
+  text-orientation: mixed !important;
+}
+
+#__next .gsc-reply-author .link-secondary,
+#__next .gsc-reply-author time {
+  text-orientation: upright !important;
+  word-spacing: -1em;
+}
+
+/* 所有者等徽章：塞进同列，去掉胶囊边框 */
+#__next .gsc-reply-author .text-xs,
+#__next .gsc-reply-author .color-box-border-info {
+  display: block !important;
+  width: 1.5em !important;
+  max-width: 1.5em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  font-size: 1em !important;
+  font-weight: 600;
+  line-height: 1.5 !important;
+  color: #999 !important;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
 }
 
 #__next .gsc-reply-content {
@@ -537,6 +601,7 @@ main {
   text-orientation: inherit;
   width: auto !important;
   padding: 0 !important;
+  margin: 0 !important;
 }
 
 #__next .gsc-reply-footer,

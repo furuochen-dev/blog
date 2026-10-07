@@ -8,8 +8,12 @@
  */
 (function () {
   var ORIGIN = "https://giscus.app";
-  var THEME_V = "https://furuochen.com/giscus-blog-zh-vertical.css";
-  var THEME_H = "https://furuochen.com/giscus-blog-zh-horizontal.css";
+  /* Bump when theme CSS changes so giscus/browsers do not keep a stale sheet */
+  var THEME_VER = "20261007c";
+  var THEME_V =
+    "https://furuochen.com/giscus-blog-zh-vertical.css?v=" + THEME_VER;
+  var THEME_H =
+    "https://furuochen.com/giscus-blog-zh-horizontal.css?v=" + THEME_VER;
 
   var mount = document.currentScript && document.currentScript.parentNode;
   if (!mount || mount.querySelector("script[src*='giscus.app/client.js']")) {

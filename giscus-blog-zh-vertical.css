@@ -182,11 +182,10 @@ main {
   font-size: 1em;
   position: absolute;
   z-index: 6;
-  /* 笑脸轨：1em 宽 + 两侧各 0.25em margin */
-  width: 1em;
-  max-width: 1em;
-  min-width: 1em;
-  margin-inline: 0.25em;
+  /* 与页脚控件同 1.5em 行轨 */
+  width: 1.5em;
+  max-width: 1.5em;
+  min-width: 1.5em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -230,8 +229,8 @@ main {
   gap: 0;
   margin: 0 !important;
   padding: 0 !important;
-  width: 1em !important;
-  max-width: 1em !important;
+  width: 1.5em !important;
+  max-width: 1.5em !important;
   overflow: visible;
 }
 
@@ -426,13 +425,18 @@ main {
  * 页脚跟正文一样竖排（赞 / 表情 / N 条回复上下读）。
  * 只有弹出层保持 horizontal-tb。
  */
+/*
+ * vertical-rl + flex row：交叉轴 = block = 右→左。
+ * flex-start 会贴物理右边，所以 1em 控件落在 1.5em 轨右侧。
+ * 一律 center，坐进行轨正中。
+ */
 #__next .gsc-comment-footer {
   writing-mode: vertical-rl;
   text-orientation: upright;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   gap: 0.5em;
   margin: 0;
@@ -445,20 +449,36 @@ main {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.5em;
   margin: 0;
   overflow: visible;
 }
 
-#__next .gsc-comment-replies-count,
+#__next .gsc-comment-replies-count {
+  writing-mode: vertical-rl !important;
+  text-orientation: upright !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: 1.5em !important;
+  max-width: 1.5em !important;
+  box-sizing: border-box;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 #__next .gsc-comment-replies-count .text-xs {
   writing-mode: vertical-rl !important;
   text-orientation: upright !important;
   font-size: 1em !important;
-  line-height: 1 !important;
+  line-height: 1.5 !important;
+  width: 1em !important;
+  max-width: 1em !important;
   word-spacing: -1em;
   white-space: normal;
+  margin: 0 auto !important;
 }
 
 /* 仅笑脸触发器保持横排；已选 👍1 等走下方竖排栈 */
@@ -477,11 +497,11 @@ main {
   text-orientation: upright !important;
   display: flex !important;
   flex-direction: row !important;
-  align-items: center;
+  align-items: center; /* 1em 字心在 1.5em 轨正中 */
   justify-content: flex-start;
   gap: 0;
-  width: 1em !important;
-  max-width: 1em !important;
+  width: 1.5em !important;
+  max-width: 1.5em !important;
   height: auto !important;
   min-height: 0 !important;
   margin: 0 !important;
@@ -495,6 +515,7 @@ main {
   font-weight: 600;
   line-height: 1.5 !important;
   color: #999 !important;
+  box-sizing: border-box;
 }
 
 #__next .gsc-upvote-button .gsc-direct-reaction-button-emoji,
@@ -536,8 +557,8 @@ main {
   align-items: center;
   justify-content: flex-start;
   gap: 0;
-  width: 1em !important;
-  max-width: 1em !important;
+  width: 1.5em !important;
+  max-width: 1.5em !important;
   height: auto !important;
   min-height: 0 !important;
   margin: 0 !important;
@@ -551,6 +572,7 @@ main {
   font-weight: 600;
   line-height: 1.5 !important;
   color: #999 !important;
+  box-sizing: border-box;
 }
 
 #__next .gsc-direct-reaction-button.has-reacted {
@@ -587,7 +609,7 @@ main {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: nowrap;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.5em;
   margin: 0 !important;
   padding: 0 !important;
@@ -780,6 +802,7 @@ main {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+  align-items: center;
   gap: 0.5em;
   margin: 0 !important;
   overflow: visible;
@@ -1281,22 +1304,22 @@ main {
 }
 
 /*
- * 笑脸：1em 行轨，两侧各 0.25em margin，中间 0.5em 图标居中。
- * 清掉 summary 三角槽；font-size 保持 1em（勿 0）。
+ * 笑脸：1.5em 行轨，0.5em 图标居中（两侧各余 0.5em/2，与赞同同构）。
+ * 不用外 margin 撑轨，避免把兄弟控件挤去右边。
  */
 #__next .gsc-reactions-menu {
   display: grid !important;
   place-items: center !important;
-  width: 1em !important;
-  height: 1em !important;
-  min-width: 1em !important;
-  min-height: 1em !important;
-  max-width: 1em !important;
-  max-height: 1em !important;
+  width: 1.5em !important;
+  height: 1.5em !important;
+  min-width: 1.5em !important;
+  min-height: 1.5em !important;
+  max-width: 1.5em !important;
+  max-height: 1.5em !important;
   box-sizing: border-box;
   flex-shrink: 0;
   font-size: 1em !important;
-  margin: 0.25em !important;
+  margin: 0 !important;
   padding: 0 !important;
 }
 
@@ -1309,12 +1332,12 @@ main {
   place-items: center !important;
   place-content: center !important;
   box-sizing: border-box !important;
-  width: 1em !important;
-  height: 1em !important;
-  min-width: 1em !important;
-  min-height: 1em !important;
-  max-width: 1em !important;
-  max-height: 1em !important;
+  width: 1.5em !important;
+  height: 1.5em !important;
+  min-width: 1.5em !important;
+  min-height: 1.5em !important;
+  max-width: 1.5em !important;
+  max-height: 1.5em !important;
   margin: 0 !important;
   padding: 0 !important;
   border-width: 1px !important;

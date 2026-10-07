@@ -443,8 +443,15 @@ main {
 }
 
 /*
- * 中文计数 / 相对时间：upright + digits 2（「15」纵中横，「小时前」竖排）。
- * 英文登录名：mixed（整串侧放，不要 upright 逐字竖立）。
+ * 中文计数 / 相对时间：upright（数字逐字竖立）。
+ *
+ * 纵中横本可用 text-combine-upright: digits 2，但该值目前任何浏览器
+ * 都未实现（Firefox 会标 invalid property value）。唯一可用的是
+ * text-combine-upright: all，且必须把「15」单独包进 <span>——Giscus
+ * 跨域 iframe 里我们改不了 DOM，所以评论区做不到自动 digits 合并。
+ * 正文列表序号仍用 vertical.css 里的 all + ::before，那是我们自己的标记。
+ *
+ * 英文登录名：mixed（整串侧放）。
  */
 #__next .gsc-comments-count,
 #__next .gsc-comments-count a,
@@ -456,16 +463,12 @@ main {
 #__next .gsc-comment-author a:has(time),
 #__next .gsc-comment-header time {
   text-orientation: upright !important;
-  text-combine-upright: digits 2;
-  -webkit-text-combine: digits 2;
 }
 
 #__next .gsc-comment-author-avatar,
 #__next .gsc-comment-author-avatar span,
 #__next .gsc-comment-author-avatar .link-primary {
   text-orientation: mixed !important;
-  text-combine-upright: none;
-  -webkit-text-combine: none;
 }
 
 /* 「由 giscus 提供支持」：去斜体，去掉 text-sm，与「N 条评论」同字号 */

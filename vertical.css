@@ -131,7 +131,8 @@ hr {
   border: none;
   border-left: 1px solid #eaeaea;
   width: 0;
-  margin: 0 1em;
+  /* 线两侧各一行高，与段间距 1.5em 同轨 */
+  margin: 0 1.5em;
   padding: 0;
   height: 100%;
 }
@@ -195,12 +196,12 @@ a:hover {
   margin: 0;
   margin-inline: 0.5em;
   /*
-   * 右边竖线 = 正文 hr：1px #eaeaea，线两侧各 1em（hr { margin: 0 1em }）。
+   * 右边竖线 = 正文 hr：1px #eaeaea，线两侧各 1.5em（hr { margin: 0 1.5em }）。
    * padding-right = 内容到线；margin-right = 线到外侧。
    */
   padding: 0;
-  padding-right: 1em;
-  margin-right: 1em;
+  padding-right: 1.5em;
+  margin-right: 1.5em;
   border: none;
   border-right: 1px solid #eaeaea;
   box-sizing: border-box;

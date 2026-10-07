@@ -182,10 +182,10 @@ main {
   font-size: 1em;
   position: absolute;
   z-index: 6;
-  /* 笑脸固定 26px，列宽不能比它窄否则整颗看不见 */
-  width: 26px;
-  max-width: 26px;
-  min-width: 26px;
+  /* 笑脸 1.5em 方盒；列宽跟它对齐 */
+  width: 1.5em;
+  max-width: 1.5em;
+  min-width: 1.5em;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -1193,18 +1193,20 @@ main {
 }
 
 /*
- * 笑脸按钮：用 px，禁止 font-size:0（em 会跟着变成 0 → 整颗坍缩）。
+ * 笑脸：1.5em 方盒 + grid 居中。
+ * 不要在本元素上写 font-size:0，否则 width/height 的 em 会算成 0。
  */
 #__next .gsc-reactions-menu {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 26px !important;
-  height: 26px !important;
-  min-width: 26px !important;
-  min-height: 26px !important;
+  width: 1.5em !important;
+  height: 1.5em !important;
+  min-width: 1.5em !important;
+  min-height: 1.5em !important;
   box-sizing: border-box;
   flex-shrink: 0;
+  font-size: 1em !important;
 }
 
 #__next .gsc-reactions-button,
@@ -1215,17 +1217,17 @@ main {
   place-items: center !important;
   place-content: center !important;
   box-sizing: border-box !important;
-  width: 26px !important;
-  height: 26px !important;
-  min-width: 26px !important;
-  min-height: 26px !important;
-  max-width: 26px !important;
-  max-height: 26px !important;
+  width: 1.5em !important;
+  height: 1.5em !important;
+  min-width: 1.5em !important;
+  min-height: 1.5em !important;
+  max-width: 1.5em !important;
+  max-height: 1.5em !important;
   margin: 0 !important;
   padding: 0 !important;
   border-width: 1px !important;
   line-height: 1 !important;
-  font-size: 16px !important;
+  font-size: 1em !important;
   list-style: none !important;
   appearance: none !important;
   -webkit-appearance: none !important;
@@ -1242,8 +1244,8 @@ main {
 #__next .gsc-reactions-button .octicon,
 #__next .gsc-reactions-button svg {
   display: block !important;
-  width: 16px !important;
-  height: 16px !important;
+  width: 1em !important;
+  height: 1em !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;

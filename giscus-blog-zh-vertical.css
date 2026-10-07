@@ -455,20 +455,22 @@ main {
   overflow: visible;
 }
 
-/* 「N 条回复」：1.5em 行轨正中（grid，避开 vertical-rl 下 margin:auto / mr-4 跑偏） */
+/*
+ * 「N 条回复」：1.5em 行轨，左右各 0.25em padding-block 夹出中间 1em。
+ * vertical-rl 里 grid/margin:auto 容易贴边；对称 padding-block 最稳。
+ */
 #__next .gsc-comment-replies-count {
   writing-mode: vertical-rl !important;
   text-orientation: upright !important;
-  display: grid !important;
-  place-items: center !important;
-  place-content: center start !important;
+  display: block !important;
   width: 1.5em !important;
   max-width: 1.5em !important;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   margin: 0 !important;
   margin-right: 0 !important; /* 盖掉 Giscus mr-4 */
   margin-left: 0 !important;
-  padding: 0 !important;
+  padding-inline: 0 !important;
+  padding-block: 0.25em !important;
 }
 
 #__next .gsc-comment-replies-count .text-xs {
@@ -477,14 +479,13 @@ main {
   display: block !important;
   font-size: 1em !important;
   line-height: 1.5 !important;
-  width: 1em !important;
-  max-width: 1em !important;
+  width: 100% !important; /* 吃掉轨内剩余 1em */
+  max-width: none !important;
   margin: 0 !important;
   padding: 0 !important;
   word-spacing: -1em;
   white-space: normal;
-  justify-self: center !important;
-  align-self: center !important;
+  box-sizing: border-box !important;
 }
 
 /* 仅笑脸触发器保持横排；已选 👍1 等走下方竖排栈 */

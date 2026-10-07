@@ -365,49 +365,84 @@ main {
   margin-block: 0.25em;
 }
 
-/* 最早 / 最新：跟正文一样竖排，不要横躺的 pill */
+/*
+ * 最早 / 最新：不要做成按钮。
+ * 与「N 条评论」同级文字——未选灰色，选中黑色 + 左边下划线（竖排 underline）。
+ */
+#__next .gsc-right-header.BtnGroup,
 #__next .BtnGroup {
   display: inline-flex;
   flex-direction: row;
-  align-items: stretch;
+  align-items: flex-start;
+  gap: 0.75em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0;
   writing-mode: vertical-rl;
   text-orientation: upright;
-  border-radius: 0;
-  background: transparent;
-  gap: 0;
 }
 
 #__next .BtnGroup-item {
   display: block;
+  margin: 0;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
   writing-mode: vertical-rl;
   text-orientation: upright;
-  border-radius: 0 !important;
-  border: 1px solid #eaeaea !important;
-  border-block-start: none !important;
-  padding: 0.5em 0.35em !important;
-}
-
-#__next .BtnGroup-item:first-child {
-  border-block-start: 1px solid #eaeaea !important;
 }
 
 #__next .BtnGroup-item .btn,
 #__next .BtnGroup .btn {
-  writing-mode: vertical-rl !important;
-  text-orientation: upright !important;
+  display: inline;
+  margin: 0;
+  padding: 0 !important;
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
   background: transparent !important;
-  padding: 0 !important;
   font-family: inherit;
   font-size: 1em !important;
+  font-weight: 600;
   line-height: 1.5 !important;
+  color: #999 !important;
+  writing-mode: vertical-rl !important;
+  text-orientation: upright !important;
+  text-decoration: none !important;
+  cursor: pointer;
 }
 
-#__next .BtnGroup-item--selected,
-#__next .BtnGroup-item--selected .btn {
-  background: #fbfbfb !important;
+#__next .BtnGroup-item .btn:hover,
+#__next .BtnGroup .btn:hover {
+  color: #333 !important;
+  text-decoration: underline !important;
+  background: transparent !important;
+}
+
+#__next .BtnGroup-item--selected .btn,
+#__next .BtnGroup-item[aria-current="true"] .btn {
+  color: #333 !important;
+  font-weight: 600;
+  text-decoration: underline !important;
+  background: transparent !important;
+}
+
+/* 与「N 条评论」字重/字号对齐 */
+#__next .gsc-comments-count,
+#__next .gsc-comments-count-separator,
+#__next .gsc-replies-count {
+  font-weight: 600;
+  font-style: normal !important;
+  color: #333;
+}
+
+/* 「由 giscus 提供支持」：汉文排版不用斜体，直接隐藏 */
+#__next .gsc-left-header > em {
+  display: none !important;
 }
 
 #__next .btn,

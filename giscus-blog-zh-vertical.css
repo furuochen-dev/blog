@@ -182,14 +182,14 @@ main {
   font-size: 1em;
   position: absolute;
   z-index: 6;
-  /* 笑脸 1.5em 方盒；列宽跟它对齐 */
-  width: 1.5em;
-  max-width: 1.5em;
-  min-width: 1.5em;
+  /* 笑脸 1em 方盒，与计数列同轨 */
+  width: 1em;
+  max-width: 1em;
+  min-width: 1em;
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 0.5em;
   margin: 0;
   padding: 0;
@@ -225,11 +225,12 @@ main {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
-  gap: 0.5em;
+  justify-content: center;
+  gap: 0;
   margin: 0 !important;
-  width: auto;
-  max-width: none;
+  padding: 0 !important;
+  width: 1em !important;
+  max-width: 1em !important;
   overflow: visible;
 }
 
@@ -1212,21 +1213,23 @@ main {
 }
 
 /*
- * 笑脸：1.5em 方盒居中。
- * summary 默认会留 disclosure 标记槽，图标会被挤到右边——必须清掉。
- * 不要 font-size:0（em 宽高会变 0）。
+ * 笑脸：1em 方盒（别用 1.5em，会显过大），图标 0.75em 正中。
+ * 清掉 summary 三角槽；font-size 保持 1em（勿 0，否则 em 坍成 0）。
  */
 #__next .gsc-reactions-menu {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 1.5em !important;
-  height: 1.5em !important;
-  min-width: 1.5em !important;
-  min-height: 1.5em !important;
+  display: grid !important;
+  place-items: center !important;
+  width: 1em !important;
+  height: 1em !important;
+  min-width: 1em !important;
+  min-height: 1em !important;
+  max-width: 1em !important;
+  max-height: 1em !important;
   box-sizing: border-box;
   flex-shrink: 0;
   font-size: 1em !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 #__next .gsc-reactions-button,
@@ -1234,16 +1237,16 @@ main {
 #__next .gsc-reactions-button.gsc-social-reaction-summary-item {
   writing-mode: horizontal-tb !important;
   text-orientation: mixed !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  display: grid !important;
+  place-items: center !important;
+  place-content: center !important;
   box-sizing: border-box !important;
-  width: 1.5em !important;
-  height: 1.5em !important;
-  min-width: 1.5em !important;
-  min-height: 1.5em !important;
-  max-width: 1.5em !important;
-  max-height: 1.5em !important;
+  width: 1em !important;
+  height: 1em !important;
+  min-width: 1em !important;
+  min-height: 1em !important;
+  max-width: 1em !important;
+  max-height: 1em !important;
   margin: 0 !important;
   padding: 0 !important;
   border-width: 1px !important;
@@ -1256,7 +1259,6 @@ main {
   flex-shrink: 0 !important;
 }
 
-/* WebKit / Firefox：去掉 summary 左侧三角占位，否则 SVG 视觉局右 */
 #__next summary.gsc-reactions-button::-webkit-details-marker {
   display: none !important;
   width: 0 !important;
@@ -1265,7 +1267,6 @@ main {
 
 #__next summary.gsc-reactions-button::marker {
   content: "" !important;
-  font-size: 0 !important;
 }
 
 #__next .gsc-reactions-button::before {
@@ -1277,20 +1278,21 @@ main {
 #__next .gsc-reactions-button svg,
 #__next summary.gsc-reactions-button svg {
   display: block !important;
-  width: 1em !important;
-  height: 1em !important;
-  margin: 0 auto !important;
+  width: 0.75em !important;
+  height: 0.75em !important;
+  max-width: 0.75em !important;
+  max-height: 0.75em !important;
+  margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
-  /* 盖掉 inline style="vertical-align: text-bottom" */
   vertical-align: middle !important;
   position: static !important;
   inset: auto !important;
-  top: auto !important;
-  bottom: auto !important;
   overflow: visible !important;
   flex: none !important;
   transform: none !important;
+  justify-self: center !important;
+  align-self: center !important;
 }
 
 #__next .gsc-emoji-button,

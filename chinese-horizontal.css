@@ -218,14 +218,6 @@ code {
   color-scheme: light;
 }
 
-.comments > h3 {
-  margin: 1.1em 0 0.85em;
-  font-size: 1.35rem;
-  font-weight: normal;
-  text-align: center;
-  text-indent: 0;
-}
-
 .giscus,
 .giscus-frame {
   width: 100%;

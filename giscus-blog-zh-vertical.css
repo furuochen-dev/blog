@@ -868,6 +868,12 @@ main {
   background: transparent !important;
 }
 
+/* 等宽字体切换：无用，隐藏 */
+#__next .gsc-toolbar-item,
+#__next .gsc-comment-box-md-toolbar {
+  display: none !important;
+}
+
 #__next .gsc-comment-box-tabs {
   display: flex;
   flex-direction: row;

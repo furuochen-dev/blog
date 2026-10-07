@@ -178,6 +178,12 @@ body,
   color: var(--color-fg-default);
 }
 
+/* 等宽字体切换：无用，隐藏 */
+#__next .gsc-toolbar-item,
+#__next .gsc-comment-box-md-toolbar {
+  display: none !important;
+}
+
 #__next .btn,
 #__next .btn-primary {
   border-radius: 0;

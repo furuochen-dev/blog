@@ -185,12 +185,14 @@ a:hover {
  */
 .comments {
   display: block;
-  height: 100%;
-  max-height: 100%;
+  /*
+   * vertical-rl: margin-inline = 上下内缩。各 0.5em，高度就要比 #main 少 1em。
+   */
+  height: calc(100% - 1em);
+  max-height: calc(100% - 1em);
   width: auto;
-  /* vertical-rl: inline = 上下, block = 左右. 列间距要用 block，不能用 inline */
   margin: 0;
-  margin-block: 1em;
+  margin-inline: 0.5em;
   padding: 0;
   border: none;
   box-sizing: border-box;
@@ -207,7 +209,7 @@ a:hover {
   display: block !important;
   /*
    * Giscus only auto-resizes height. In vertical-rl content grows sideways,
-   * so give a real column budget; height follows #main, not a second 56vh.
+   * so give a real column budget; height fills .comments (already #main − 1em).
    */
   height: 100% !important;
   max-height: 100% !important;

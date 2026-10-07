@@ -1235,6 +1235,14 @@ main {
   box-sizing: border-box;
 }
 
+/* 「使用 GitHub 登录」：GitHub 六字旁排，勿 upright 竖拆 */
+#__next .gsc-comment-box-buttons a.btn,
+#__next .gsc-comment-box-buttons a.btn-primary,
+#__next .gsc-comment-box-bottom a.btn,
+#__next .gsc-comment-box-bottom a.btn-primary {
+  text-orientation: mixed !important;
+}
+
 #__next .gsc-comment-box-buttons .btn:hover,
 #__next .gsc-comment-box-buttons .btn-primary:hover,
 #__next .gsc-comment-box-bottom .btn:hover,

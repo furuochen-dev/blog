@@ -214,7 +214,7 @@ main {
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  gap: 0.35em;
+  gap: 0.5em;
   margin: 0 !important;
   width: auto;
   max-width: none;
@@ -281,7 +281,7 @@ main {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 0.35em;
+  gap: 0.5em;
   width: 1.5em !important;
   max-width: 1.5em !important;
   min-width: 0 !important;
@@ -308,6 +308,10 @@ main {
   width: 1.5em !important;
   max-width: 1.5em !important;
   box-sizing: border-box;
+  /* vertical-rl：inline = 上下 → 名称框顶底间距 */
+  padding-inline: 0.5em !important;
+  padding-block: 0 !important;
+  margin: 0 !important;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -404,7 +408,7 @@ main {
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: flex-start;
-  gap: 0.35em;
+  gap: 0.5em;
   margin: 0;
   overflow: visible;
 }
@@ -477,7 +481,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 0.35em;
+  gap: 0.5em;
 }
 
 #__next .gsc-reply-header,
@@ -485,7 +489,7 @@ main {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 0.35em;
+  gap: 0.5em;
   writing-mode: inherit;
   width: 1.5em !important;
   max-width: 1.5em !important;
@@ -497,6 +501,10 @@ main {
 #__next .gsc-reply-author time {
   width: 1.5em !important;
   max-width: 1.5em !important;
+  box-sizing: border-box;
+  padding-inline: 0.5em !important;
+  padding-block: 0 !important;
+  margin: 0 !important;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -515,7 +523,7 @@ main {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  gap: 0.35em;
+  gap: 0.5em;
   margin: 0 !important;
   overflow: visible;
 }
@@ -570,7 +578,7 @@ main {
   flex-direction: row;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 0.35em;
+  gap: 0.5em;
 }
 
 #__next .gsc-comment-box-bottom {
@@ -585,7 +593,7 @@ main {
   display: flex;
   flex-direction: row;
   margin-inline-start: 0;
-  gap: 0.35em;
+  gap: 0.5em;
 }
 
 #__next .gsc-comment-box-textarea {
@@ -837,7 +845,7 @@ main {
   writing-mode: horizontal-tb !important;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35em;
+  gap: 0.5em;
 }
 
 #__next .btn,

@@ -207,19 +207,37 @@ main {
 @supports (anchor-name: --x) {
   #__next .gsc-reactions {
     position-anchor: --gsc-left-header;
-    top: calc(anchor(bottom) + 2em);
+    /* 与 left-header 内 gap:0.5em 同距，接上「评论·回复·表情」 */
+    top: calc(anchor(bottom) + 0.5em);
     right: anchor(right);
     bottom: auto;
   }
 }
 
 #__next .gsc-reactions-count {
+  display: flex !important;
+  flex-direction: row !important; /* 竖排：· 在上，文案在下 */
+  align-items: flex-start !important;
+  gap: 0.5em;
   width: 1em;
   max-width: 1em;
   text-align: start;
   margin: 0;
   padding: 0;
   line-height: 1 !important;
+  font-weight: 600;
+  font-style: normal !important;
+  color: #333;
+}
+
+/* 「N 条回复」与「N 个表情」之间补中黑，同评论·回复 */
+#__next .gsc-reactions-count::before {
+  content: "·";
+  flex: none;
+  font-weight: 600;
+  font-style: normal;
+  color: #333;
+  line-height: 1;
 }
 
 /* 盖掉 Giscus flex/mt-2/gap-2；同轨竖排，勿改 horizontal-tb 横铺出轨 */
@@ -1408,13 +1426,22 @@ main {
   max-width: 1em;
 }
 
-/* 与「N 条评论」字重/字号对齐 */
+/* 与「N 条评论」字重/字号对齐（含中黑分隔） */
 #__next .gsc-comments-count,
 #__next .gsc-comments-count-separator,
-#__next .gsc-replies-count {
+#__next .gsc-replies-count,
+#__next .gsc-reactions-count {
   font-weight: 600;
   font-style: normal !important;
   color: #333;
+}
+
+#__next .gsc-comments-count-separator {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  width: 1em;
+  max-width: 1em;
 }
 
 /*

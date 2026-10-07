@@ -847,6 +847,7 @@ main {
   max-width: 1em;
   margin: 0 !important;
   margin-block: 0.25em !important;
+  margin-top: 0.5em !important;
   overflow: visible;
   box-sizing: border-box;
 }

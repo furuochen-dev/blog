@@ -557,8 +557,8 @@ main {
 }
 
 /*
- * 已选表情（👍1）：同赞同——上符下数，跟页脚同 1em 轨，去胶囊。
- * 表情本身 horizontal-tb，避免竖排把 glyph 拧歪。
+ * 已选表情（👍1）：上符下数；表情略缩小，数字 0.5em 横排以便多位。
+ * 去胶囊、压掉 has-reacted 亮色。
  */
 #__next .gsc-direct-reaction-button.gsc-social-reaction-summary-item,
 #__next .gsc-direct-reaction-button {
@@ -570,7 +570,8 @@ main {
   justify-content: flex-start;
   gap: 0;
   width: 1em !important;
-  max-width: 1em !important;
+  min-width: 1em !important;
+  max-width: none !important; /* 横排多位数字可撑开 */
   height: auto !important;
   min-height: 0 !important;
   margin: 0 !important;
@@ -587,8 +588,10 @@ main {
   box-sizing: border-box;
 }
 
-#__next .gsc-direct-reaction-button.has-reacted {
-  color: #333 !important;
+#__next .gsc-direct-reaction-button.has-reacted,
+#__next .gsc-direct-reaction-button.has-reacted.color-bg-info,
+#__next .gsc-direct-reaction-button.color-bg-info {
+  color: #999 !important;
   background: transparent !important;
   border: none !important;
 }
@@ -597,9 +600,10 @@ main {
   writing-mode: horizontal-tb !important;
   text-orientation: mixed !important;
   display: block !important;
-  width: 1em !important;
-  font-size: 1em !important;
-  line-height: 1 !important;
+  width: auto !important;
+  font-size: 0.7em !important;
+  height: 1.1em;
+  line-height: 1.1em !important;
   text-align: center;
   flex: none;
 }
@@ -608,12 +612,14 @@ main {
   margin: 0 !important;
   padding: 0 !important;
   max-width: none !important;
-  font-size: 1em !important;
+  font-size: 0.5em !important;
   font-weight: 600;
   line-height: 1 !important;
-  color: inherit;
-  writing-mode: vertical-rl !important;
-  text-orientation: upright !important;
+  color: #999 !important;
+  /* 横排，多位数字左右排开 */
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  white-space: nowrap !important;
 }
 
 #__next .gsc-direct-reaction-buttons {
@@ -1206,7 +1212,7 @@ main {
 }
 
 /*
- * 输入/预览主区：无额外 margin。
+ * 输入主区无额外 margin；预览见下方（左右 1.5em、上 1em）。
  * Giscus resizeTextArea() 会写 inline height，竖排下必须 !important 盖掉。
  */
 #__next .gsc-comment-box-main {
@@ -1223,7 +1229,23 @@ main {
   box-sizing: border-box;
 }
 
-#__next .gsc-comment-box-write,
+#__next .gsc-comment-box-write {
+  height: 100% !important;
+  min-height: 0 !important;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 预览：左右空一行、上空一格 */
 #__next .gsc-comment-box-preview,
 #__next .markdown.gsc-comment-box-preview {
   height: 100% !important;
@@ -1233,7 +1255,10 @@ main {
   flex-direction: column;
   align-items: stretch;
   box-sizing: border-box;
-  margin: 0 !important;
+  margin-right: 1.5em !important;
+  margin-left: 1.5em !important;
+  margin-top: 1em !important;
+  margin-bottom: 0 !important;
   padding: 0 !important;
   border: none !important;
   border-radius: 0 !important;

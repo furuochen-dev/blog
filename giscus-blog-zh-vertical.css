@@ -1033,20 +1033,91 @@ main {
   pointer-events: none !important;
 }
 
+/*
+ * 输入 / 预览：同「最早 / 最新」——单列 1em 轨、无底无框，悬停变黑加下划线。
+ */
 #__next .gsc-comment-box-tabs {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap: 0.5em;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0;
+  width: 1em !important;
+  max-width: 1em !important;
+  margin: 0 !important;
+  margin-block: 0.25em !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  box-sizing: border-box;
 }
 
+#__next .gsc-comment-box-tabs > div {
+  display: flex !important;
+  flex-direction: row !important; /* 竖排：输入、预览上下一条线 */
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  gap: 0.5em;
+  width: 1em !important;
+  max-width: 1em !important;
+  margin: 0 !important; /* 盖掉 mx-2 / mt-2 */
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-sizing: border-box;
+}
+
+#__next .gsc-comment-box-tabs button {
+  display: block !important;
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  font-family: inherit;
+  font-size: 1em !important;
+  font-weight: 600;
+  line-height: 1 !important;
+  color: #999 !important;
+  writing-mode: vertical-rl !important;
+  text-orientation: upright !important;
+  text-decoration: none !important;
+  text-underline-offset: 0.15em;
+  cursor: pointer;
+  width: 1em !important;
+  max-width: 1em !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  box-sizing: border-box;
+}
+
+#__next .gsc-comment-box-tabs button:hover,
+#__next .gsc-comment-box-tabs button.color-text-primary,
+#__next .gsc-comment-box-tabs button.color-bg-canvas {
+  color: #333 !important;
+  text-decoration: underline !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+/* 底栏：1em 轨，左右 0.25em（勿用 0.5em） */
 #__next .gsc-comment-box-bottom {
   display: flex;
   flex-direction: row;
-  align-items: center; /* 1em 轨内左右居中 */
+  align-items: center;
   gap: 0.5em;
-  margin: 0.5em;
+  width: 1em;
+  max-width: 1em;
+  margin: 0;
+  margin-block: 0.25em;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 #__next .gsc-comment-box-buttons {
@@ -1135,13 +1206,14 @@ main {
 }
 
 /*
- * 输入框要拉满评论带高度。
- * Giscus resizeTextArea() 会写 inline height（空内容很小、上限 270px），
- * 竖排下必须 !important 盖掉；width 亦然（曾见被拧成十几 px）。
- * 物理 height = 上下拉满；物理 width = 竖列厚度。
+ * 输入/预览主区：宽已含 line-height（1.5em 轨），不再加 margin。
+ * Giscus resizeTextArea() 会写 inline height，竖排下必须 !important 盖掉。
  */
 #__next .gsc-comment-box-main {
   margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
   height: 100%;
   min-height: 0;
   flex: 1 1 auto;
@@ -1152,7 +1224,8 @@ main {
 }
 
 #__next .gsc-comment-box-write,
-#__next .gsc-comment-box-preview {
+#__next .gsc-comment-box-preview,
+#__next .markdown.gsc-comment-box-preview {
   height: 100% !important;
   min-height: 0 !important;
   flex: 1 1 auto;
@@ -1160,7 +1233,12 @@ main {
   flex-direction: column;
   align-items: stretch;
   box-sizing: border-box;
+  margin: 0 !important;
   padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 #__next .gsc-comment-box-textarea,

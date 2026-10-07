@@ -344,7 +344,9 @@ main {
   align-self: stretch;
   border: none !important;
   border-inline-end: 1px solid #eaeaea;
-  padding-inline-end: 0.75em;
+  padding-inline-end: 0;
+  padding-right: 0.25em;
+  box-sizing: border-box;
   background: transparent !important;
   overflow: visible;
 }
@@ -362,17 +364,50 @@ main {
   overflow: visible;
 }
 
-#__next .gsc-comment-footer,
-#__next .gsc-comment-reactions {
-  writing-mode: horizontal-tb;
-  text-orientation: mixed;
+/*
+ * 页脚跟正文一样竖排（赞 / 表情 / N 条回复上下读）。
+ * 只有弹出层保持 horizontal-tb。
+ */
+#__next .gsc-comment-footer {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5em;
+  margin: 0;
+  overflow: visible;
+}
+
+#__next .gsc-comment-reactions {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
   gap: 0.35em;
   margin: 0;
   overflow: visible;
+}
+
+#__next .gsc-comment-replies-count,
+#__next .gsc-comment-replies-count .text-xs {
+  writing-mode: vertical-rl !important;
+  text-orientation: upright !important;
+  font-size: 1em !important;
+  line-height: 1 !important;
+  word-spacing: -1em;
+  white-space: normal;
+}
+
+#__next .gsc-comment-footer .gsc-upvote-button,
+#__next .gsc-comment-footer .gsc-reactions-button,
+#__next .gsc-comment-footer .gsc-social-reaction-summary-item {
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
 }
 
 /*
@@ -436,13 +471,20 @@ main {
 
 #__next .gsc-reply-footer,
 #__next .gsc-reply-reactions {
-  writing-mode: horizontal-tb;
-  text-orientation: mixed;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap: 0.35em;
   margin: 0 !important;
   overflow: visible;
+}
+
+#__next .gsc-reply-footer .gsc-reactions-button,
+#__next .gsc-reply-footer .gsc-social-reaction-summary-item {
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
 }
 
 #__next .gsc-tl-line {

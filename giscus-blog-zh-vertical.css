@@ -344,11 +344,10 @@ main {
   text-overflow: ellipsis;
 }
 
-/* 仅用户名 span 保留上下 0.5em；时间 a/time 不要再叠 padding */
+/* 用户名：上下无 padding */
 #__next .gsc-comment-author-avatar > span.link-primary,
 #__next .gsc-comment-author-avatar > span {
-  padding-inline: 0.5em !important;
-  padding-block: 0 !important;
+  padding: 0 !important;
 }
 
 /*
@@ -725,11 +724,10 @@ main {
   text-overflow: ellipsis;
 }
 
-/* 仅用户名 span 上下 0.5em（与主评论一致） */
+/* 用户名：上下无 padding */
 #__next .gsc-reply-author span.link-primary,
 #__next .gsc-reply-author .link-primary {
-  padding-inline: 0.5em !important;
-  padding-block: 0 !important;
+  padding: 0 !important;
   text-orientation: mixed !important;
 }
 

@@ -451,8 +451,9 @@ main {
  * 只有弹出层保持 horizontal-tb。
  */
 /*
- * 页脚整条同一轨：赞 / 笑脸 / 👍…；默认 1em，
- * 回应过多折列时可加宽，避免竖直顶到「最早/最新」。
+ * 页脚：默认约 1em；回应折列时用 max-content 加宽，勿 stretch 满列。
+ * 竖排 wrap 的 cross-start = 右；若满宽 + flex-start，折列会堆到右边
+ * 被作者栏/iframe 裁掉。改为 max-content + flex-end（往左收）。
  */
 #__next .gsc-comment-footer {
   writing-mode: vertical-rl;
@@ -461,10 +462,11 @@ main {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  align-content: flex-start;
+  align-content: flex-end;
   justify-content: flex-start;
   gap: 0.5em;
-  width: auto;
+  flex: 0 0 auto;
+  width: max-content;
   min-width: 1em;
   max-width: none;
   margin: 0;
@@ -479,9 +481,10 @@ main {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  align-content: flex-start;
+  align-content: flex-end;
   gap: 0.5em;
-  width: auto;
+  flex: 0 0 auto;
+  width: max-content;
   min-width: 1em;
   max-width: none;
   margin: 0;
@@ -643,8 +646,8 @@ main {
 }
 
 /*
- * 已选回应：最多约 3 个竖排高度，再多则折到左侧下一列，
- * 避免顶进 header 底的「最早/最新」。
+ * 已选回应：最多约 3 个竖排高度，再多折到左侧下一列。
+ * max-content + flex-end：从原轨往左加列，勿往右顶进作者栏。
  */
 #__next .gsc-direct-reaction-buttons {
   writing-mode: vertical-rl !important;
@@ -652,12 +655,14 @@ main {
   flex-direction: row !important;
   flex-wrap: wrap !important;
   align-items: center;
-  align-content: flex-start;
+  align-content: flex-end;
   gap: 0.5em;
   /* 单枚约 1.6em，三枚 + 两档 gap ≈ 5.8em */
   max-height: 5.8em !important;
-  width: auto !important;
+  flex: 0 0 auto !important;
+  width: max-content !important;
   min-width: 1em !important;
+  max-width: none !important;
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box !important;
@@ -848,7 +853,7 @@ main {
 }
 
 /*
- * 回复页脚轨：默认 1em；回应折列时可加宽。左右 0.25em margin-block。
+ * 回复页脚：同主评论——max-content 往左折列，勿满宽堆到右边。
  */
 #__next .gsc-reply-footer {
   writing-mode: vertical-rl;
@@ -857,9 +862,10 @@ main {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  align-content: flex-start;
+  align-content: flex-end;
   gap: 0.5em;
-  width: auto;
+  flex: 0 0 auto;
+  width: max-content;
   min-width: 1em;
   max-width: none;
   margin: 0 !important;
@@ -876,9 +882,10 @@ main {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  align-content: flex-start;
+  align-content: flex-end;
   gap: 0.5em;
-  width: auto;
+  flex: 0 0 auto;
+  width: max-content;
   min-width: 1em;
   max-width: none;
   margin: 0 !important;

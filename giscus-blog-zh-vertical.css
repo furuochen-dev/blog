@@ -457,15 +457,15 @@ main {
  * 只有弹出层保持 horizontal-tb。
  */
 /*
- * 页脚：1em 轨为起点；回应过多用 wrap-reverse 往右（block-start）加列，
- * 故意超出 1em 轨。z-index 压过作者栏，避免往右那截被盖住消失。
+ * 页脚：竖排 wrap 先填右侧一列（block-start），再往左加列——右满左续，勿左 4 右 2。
+ * z-index 压过作者栏。
  */
 #__next .gsc-comment-footer {
   writing-mode: vertical-rl;
   text-orientation: upright;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   align-items: center;
   align-content: flex-start;
   justify-content: flex-start;
@@ -489,7 +489,7 @@ main {
   text-orientation: upright;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   align-items: center;
   align-content: flex-start;
   gap: 0.5em;
@@ -658,14 +658,14 @@ main {
 }
 
 /*
- * 已选回应：每列最多 4 枚，wrap-reverse 往右最多再加 1 列（2×4，避免 3×3）。
- * z-index 高于作者轨，往右那截才能看见。
+ * 已选回应：每列最多 4 枚；先填右列再往左加列（2×4）。
+ * z-index 高于作者轨。
  */
 #__next .gsc-direct-reaction-buttons {
   writing-mode: vertical-rl !important;
   display: flex !important;
   flex-direction: row !important;
-  flex-wrap: wrap-reverse !important;
+  flex-wrap: wrap !important;
   align-items: center;
   align-content: flex-start;
   gap: 0.5em;
@@ -868,14 +868,14 @@ main {
 }
 
 /*
- * 回复页脚：同主评论——wrap-reverse 往右超出 1em 轨，z-index 压过作者。
+ * 回复页脚：同主评论——先右列后左列，z-index 压过作者。
  */
 #__next .gsc-reply-footer {
   writing-mode: vertical-rl;
   text-orientation: upright;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   align-items: center;
   align-content: flex-start;
   gap: 0.5em;
@@ -897,7 +897,7 @@ main {
   text-orientation: upright;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   align-items: center;
   align-content: flex-start;
   gap: 0.5em;

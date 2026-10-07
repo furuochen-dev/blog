@@ -184,6 +184,7 @@ main {
   flex-direction: column;
   gap: 1em;
   height: 100%;
+  align-items: stretch;
 }
 
 #__next .gsc-timeline {
@@ -240,16 +241,24 @@ main {
   gap: 0.35em;
 }
 
-/* 一条评论 | 最早/最新：同一竖列节奏，勿被 flex 撑宽 */
+/*
+ * 一条评论在上、最早/最新在下（竖排 band 顶底对齐），同列宽 1em。
+ * header 拉满高度后 space-between。
+ */
 #__next .gsc-header {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: flex-start;
   flex-wrap: nowrap;
-  gap: 0.5em;
+  gap: 0;
   white-space: normal;
-  width: auto;
-  max-width: none;
+  width: 1em;
+  max-width: 1em;
+  min-width: 0;
+  height: 100%;
+  align-self: stretch;
+  box-sizing: border-box;
 }
 
 #__next .gsc-left-header {
@@ -264,6 +273,12 @@ main {
   min-width: 0;
   flex: none;
   line-height: 1;
+}
+
+#__next .gsc-right-header {
+  margin-block-start: auto;
+  width: 1em;
+  max-width: 1em;
 }
 
 #__next .gsc-comment {
@@ -530,29 +545,10 @@ main {
   text-orientation: mixed !important;
 }
 
-/* 「由 giscus 提供支持」：去斜体，去掉 text-sm，与「N 条评论」同字号 */
+/* 「由 giscus 提供支持」：排版捣乱，直接隐藏 */
 #__next .gsc-left-header > em,
-#__next .gsc-left-header > em.text-sm,
-#__next .gsc-left-header em.color-text-secondary {
-  display: inline !important;
-  font-style: normal !important;
-  font-size: 1em !important;
-  line-height: 1.5 !important;
-  font-weight: normal;
-  color: #999 !important;
-}
-
-#__next .gsc-left-header > em a,
-#__next .gsc-left-header > em .link-secondary {
-  font-style: normal !important;
-  font-size: inherit !important;
-  color: #999 !important;
-  text-decoration: none;
-}
-
-#__next .gsc-left-header > em a:hover {
-  text-decoration: underline;
-  color: #333 !important;
+#__next .gsc-left-header em {
+  display: none !important;
 }
 
 #__next .btn,

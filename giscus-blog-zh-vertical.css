@@ -255,9 +255,13 @@ main {
 #__next .gsc-timeline {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 1em; /* 两条一级评论之间 1em */
   height: 100%;
   flex: 1 1 auto;
+}
+
+#__next .gsc-timeline > .gsc-comment {
+  margin: 0 !important;
 }
 
 /* Override giscus .875rem / text-sm */
@@ -751,38 +755,49 @@ main {
 }
 
 /*
- * 「写回复」：仿正文 .separator，但字在顶上。
- * 顶上推出 1em → 文字 → 间隔 0.5em → 中间一条黑实线拉满余高。
+ * 二级回复带（.gsc-replies）：保留 inset 底；
+ * 顶上 1em 高区域内一条细线表示从属，并向左接到「写回复」。
  */
+#__next .gsc-replies {
+  writing-mode: inherit;
+  text-orientation: inherit;
+  align-self: stretch;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 0 !important;
+  padding: 0 !important;
+  padding-inline-start: 1em !important; /* 顶上占 1em */
+  border: none !important;
+  border-radius: 0 !important;
+  border-inline-start: 1px solid #333 !important; /* 顶上细线 */
+  background-color: var(--color-canvas-inset) !important;
+  box-shadow: none !important;
+}
+
+#__next .gsc-replies.color-bg-inset {
+  background-color: var(--color-canvas-inset) !important;
+}
+
+/* 「写回复」：贴顶，顶线与 .gsc-replies 相接往左延伸 */
 #__next .gsc-reply-box {
   display: flex;
-  flex-direction: row; /* vertical-rl：顶→底 */
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
   justify-content: flex-start;
   align-self: stretch;
   writing-mode: inherit;
   height: 100%;
-  min-height: 100%;
   width: 1.5em;
   max-width: 1.5em;
   box-sizing: border-box;
   margin: 0 !important;
   padding: 0 !important;
-  padding-inline-start: 1em !important; /* 顶上推出 1em */
-  gap: 0.5em; /* 字与线 */
+  padding-inline-start: 1em !important; /* 与回复带同顶距，文字在线下 */
   border: none !important;
   border-radius: 0 !important;
+  border-inline-start: 1px solid #333 !important; /* 顶线往左接 */
   box-shadow: none !important;
   background: transparent !important;
-}
-
-#__next .gsc-reply-box::after {
-  content: "";
-  flex: 1 1 auto;
-  align-self: center;
-  width: 1px;
-  min-height: 0;
-  background: #000;
 }
 
 #__next .gsc-reply-box > button,

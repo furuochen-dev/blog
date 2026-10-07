@@ -475,6 +475,9 @@ main {
   min-width: 1em;
   max-width: none;
   margin: 0;
+  /* 1em 轨左右各 0.25em，凑进 line-height 1.5 行宽 */
+  margin-left: 0.25em;
+  margin-right: 0.25em;
   overflow: visible;
   box-sizing: border-box;
   position: relative;

@@ -182,10 +182,10 @@ main {
   font-size: 1em;
   position: absolute;
   z-index: 6;
-  /* 与页脚控件同 1.5em 行轨 */
-  width: 1.5em;
-  max-width: 1.5em;
-  min-width: 1.5em;
+  /* 与页脚同 1em 行轨 */
+  width: 1em;
+  max-width: 1em;
+  min-width: 1em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -229,8 +229,8 @@ main {
   gap: 0;
   margin: 0 !important;
   padding: 0 !important;
-  width: 1.5em !important;
-  max-width: 1.5em !important;
+  width: 1em !important;
+  max-width: 1em !important;
   overflow: visible;
 }
 
@@ -426,9 +426,8 @@ main {
  * 只有弹出层保持 horizontal-tb。
  */
 /*
- * vertical-rl + flex row：交叉轴 = block = 右→左。
- * flex-start 会贴物理右边，所以 1em 控件落在 1.5em 轨右侧。
- * 一律 center，坐进行轨正中。
+ * 页脚整条才是同一轨：赞 / 笑脸 / 👍 / N 条回复同一列。
+ * 1em 轨宽 + 左右各 0.25em margin-block（坐进 line-height 1.5 的行盒）。
  */
 #__next .gsc-comment-footer {
   writing-mode: vertical-rl;
@@ -439,8 +438,12 @@ main {
   align-items: center;
   justify-content: flex-start;
   gap: 0.5em;
+  width: 1em;
+  max-width: 1em;
   margin: 0;
+  margin-block: 0.25em;
   overflow: visible;
+  box-sizing: border-box;
 }
 
 #__next .gsc-comment-reactions {
@@ -451,13 +454,13 @@ main {
   flex-wrap: nowrap;
   align-items: center;
   gap: 0.5em;
+  width: 1em;
+  max-width: 1em;
   margin: 0;
   overflow: visible;
 }
 
-/*
- * 「N 条回复」：1em 行轨，左右各 0.25em margin-block（凑进页脚 1.5em）。
- */
+/* 「N 条回复」跟页脚同轨，不再单独加 padding/margin 居中 */
 #__next .gsc-comment-replies-count {
   writing-mode: vertical-rl !important;
   text-orientation: upright !important;
@@ -465,8 +468,7 @@ main {
   width: 1em !important;
   max-width: 1em !important;
   box-sizing: border-box !important;
-  margin: 0 !important; /* 先清掉 Giscus mr-4 等 */
-  margin-block: 0.25em !important;
+  margin: 0 !important; /* 盖掉 Giscus mr-4 */
   padding: 0 !important;
 }
 
@@ -501,11 +503,11 @@ main {
   text-orientation: upright !important;
   display: flex !important;
   flex-direction: row !important;
-  align-items: center; /* 1em 字心在 1.5em 轨正中 */
+  align-items: center;
   justify-content: flex-start;
   gap: 0;
-  width: 1.5em !important;
-  max-width: 1.5em !important;
+  width: 1em !important;
+  max-width: 1em !important;
   height: auto !important;
   min-height: 0 !important;
   margin: 0 !important;
@@ -517,7 +519,7 @@ main {
   font-family: inherit !important;
   font-size: 1em !important;
   font-weight: 600;
-  line-height: 1.5 !important;
+  line-height: 1 !important;
   color: #999 !important;
   box-sizing: border-box;
 }
@@ -542,14 +544,14 @@ main {
   max-width: none !important;
   font-size: 1em !important;
   font-weight: 600;
-  line-height: 1.5 !important;
+  line-height: 1 !important;
   color: inherit;
   writing-mode: vertical-rl !important;
   text-orientation: upright !important;
 }
 
 /*
- * 已选表情（👍1）：同赞同——上符下数，1em 列，去胶囊。
+ * 已选表情（👍1）：同赞同——上符下数，跟页脚同 1em 轨，去胶囊。
  * 表情本身 horizontal-tb，避免竖排把 glyph 拧歪。
  */
 #__next .gsc-direct-reaction-button.gsc-social-reaction-summary-item,
@@ -561,8 +563,8 @@ main {
   align-items: center;
   justify-content: flex-start;
   gap: 0;
-  width: 1.5em !important;
-  max-width: 1.5em !important;
+  width: 1em !important;
+  max-width: 1em !important;
   height: auto !important;
   min-height: 0 !important;
   margin: 0 !important;
@@ -574,7 +576,7 @@ main {
   font-family: inherit !important;
   font-size: 1em !important;
   font-weight: 600;
-  line-height: 1.5 !important;
+  line-height: 1 !important;
   color: #999 !important;
   box-sizing: border-box;
 }
@@ -602,7 +604,7 @@ main {
   max-width: none !important;
   font-size: 1em !important;
   font-weight: 600;
-  line-height: 1.5 !important;
+  line-height: 1 !important;
   color: inherit;
   writing-mode: vertical-rl !important;
   text-orientation: upright !important;
@@ -810,8 +812,12 @@ main {
   flex-wrap: nowrap;
   align-items: center;
   gap: 0.5em;
+  width: 1em;
+  max-width: 1em;
   margin: 0 !important;
+  margin-block: 0.25em !important;
   overflow: visible;
+  box-sizing: border-box;
 }
 
 #__next .gsc-reply-footer .gsc-reactions-button {
@@ -1310,7 +1316,7 @@ main {
 }
 
 /*
- * 添加回应：0.5em 圆钮（描边圈 + 内嵌笑脸），落在页脚 1.5em 行轨正中。
+ * 添加回应：0.5em 圆钮（描边圈 + 内嵌笑脸），落在页脚 1em 行轨正中。
  */
 #__next .gsc-reactions-menu {
   display: grid !important;

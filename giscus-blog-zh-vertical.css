@@ -182,8 +182,9 @@ main {
   font-size: 1em;
   position: absolute;
   z-index: 6;
-  width: 1em;
-  max-width: 1em;
+  /* 给笑脸 1.5em 方盒留宽；1em 会把 26px 图标挤歪 */
+  width: 1.5em;
+  max-width: 1.5em;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -300,6 +301,18 @@ main {
   max-width: 1.5em !important;
   min-width: 0 !important;
   box-sizing: border-box;
+}
+
+/* 作者栏拉满高：头像/名在上，时间+所有者沉底 */
+#__next .gsc-comment-header,
+#__next .gsc-comment-author {
+  height: 100%;
+  align-self: stretch;
+}
+
+#__next .gsc-comment-author > a.link-secondary,
+#__next .gsc-comment-author > a:has(time) {
+  margin-inline-start: auto !important;
 }
 
 #__next .gsc-comment-author-avatar img,
@@ -589,12 +602,24 @@ main {
   padding: 0 !important;
 }
 
-/* 名称栏紧接头像下方，同列 */
+/* 名称栏同列；拉满高后时间/所有者沉底 */
 #__next .gsc-reply-header {
   position: absolute;
   inset-block-start: 0;
   inset-inline-start: calc(1.5em + 0.5em);
+  inset-inline-end: 0;
   z-index: 1;
+  height: auto !important;
+}
+
+#__next .gsc-reply-author {
+  height: 100%;
+  align-self: stretch;
+}
+
+#__next .gsc-reply-author > a.link-secondary,
+#__next .gsc-reply-author > a:has(time) {
+  margin-inline-start: auto !important;
 }
 
 #__next .gsc-reply-author a.flex,
@@ -1164,23 +1189,38 @@ main {
   display: none !important;
 }
 
-/* 笑脸按钮：强制方盒居中（summary/octicon 默认很难对齐） */
+/* 笑脸：与列宽同轨的方盒 + grid 居中（躲开 summary/octicon 基线偏移） */
+#__next .gsc-reactions-menu {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 1.5em !important;
+  height: 1.5em !important;
+  box-sizing: border-box;
+}
+
 #__next .gsc-reactions-button,
 #__next summary.gsc-reactions-button {
   writing-mode: horizontal-tb !important;
   text-orientation: mixed !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  display: grid !important;
+  place-items: center !important;
+  place-content: center !important;
   box-sizing: border-box !important;
-  width: 26px !important;
-  height: 26px !important;
-  min-width: 26px !important;
-  min-height: 26px !important;
+  width: 1.5em !important;
+  height: 1.5em !important;
+  min-width: 1.5em !important;
+  min-height: 1.5em !important;
+  max-width: 1.5em !important;
+  max-height: 1.5em !important;
   margin: 0 !important;
   padding: 0 !important;
+  border-width: 1px !important;
   line-height: 0 !important;
+  font-size: 0 !important;
   list-style: none !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
 }
 
 #__next .gsc-reactions-button::-webkit-details-marker,
@@ -1193,15 +1233,19 @@ main {
 #__next .gsc-reactions-button .octicon,
 #__next .gsc-reactions-button svg {
   display: block !important;
-  width: 16px !important;
-  height: 16px !important;
+  width: 1em !important;
+  height: 1em !important;
   margin: 0 !important;
   padding: 0 !important;
-  vertical-align: middle !important;
+  border: 0 !important;
+  vertical-align: top !important;
   position: static !important;
   inset: auto !important;
+  top: auto !important;
+  bottom: auto !important;
   overflow: visible !important;
   flex: none !important;
+  transform: none !important;
 }
 
 #__next .gsc-emoji-button,

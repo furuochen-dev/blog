@@ -176,7 +176,7 @@ main {
 }
 
 /*
- * 顶栏「N 个表情」：与评论页脚同轨——1em 宽 + 左右 0.25em margin-block。
+ * 顶栏「N 个表情」：与评论页脚同轨，宽 1em。
  */
 #__next .gsc-reactions {
   writing-mode: vertical-rl;
@@ -194,7 +194,6 @@ main {
   justify-content: flex-start;
   gap: 0.5em;
   margin: 0;
-  margin-block: 0.25em;
   padding: 0;
   overflow: visible;
   pointer-events: auto;
@@ -434,8 +433,8 @@ main {
  * 只有弹出层保持 horizontal-tb。
  */
 /*
- * 页脚整条才是同一轨：赞 / 笑脸 / 👍 / N 条回复同一列。
- * 1em 轨宽 + 左右各 0.25em margin-block（坐进 line-height 1.5 的行盒）。
+ * 页脚整条才是同一轨：赞 / 笑脸 / 👍 / N 条回复同一列，宽 1em。
+ * 勿加 margin-block：竖排 flex column 里会在正文|页脚之间挤出空隙。
  */
 #__next .gsc-comment-footer {
   writing-mode: vertical-rl;
@@ -449,7 +448,6 @@ main {
   width: 1em;
   max-width: 1em;
   margin: 0;
-  margin-block: 0.25em;
   overflow: visible;
   box-sizing: border-box;
 }
@@ -645,7 +643,8 @@ main {
   display: flex !important;
   flex-direction: column !important;
   align-items: stretch;
-  gap: 0.5em;
+  /* 头像/作者绝对定位；正文与页脚贴列，勿 gap */
+  gap: 0;
   writing-mode: inherit;
   position: relative;
   box-sizing: border-box;
@@ -822,8 +821,8 @@ main {
   gap: 0.5em;
   width: 1em;
   max-width: 1em;
+  /* 竖排 column 下 margin-block 会在正文|页脚之间挤出空隙，勿用 */
   margin: 0 !important;
-  margin-block: 0.25em !important;
   overflow: visible;
   box-sizing: border-box;
 }

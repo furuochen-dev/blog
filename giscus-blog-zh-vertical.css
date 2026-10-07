@@ -1313,7 +1313,7 @@ main {
 }
 
 /*
- * 添加回应：按钮本体 0.5em，落在页脚 1.5em 行轨正中。
+ * 添加回应：0.5em 圆钮（描边圈 + 内嵌笑脸），落在页脚 1.5em 行轨正中。
  */
 #__next .gsc-reactions-menu {
   display: grid !important;
@@ -1348,15 +1348,19 @@ main {
   max-height: 0.5em !important;
   margin: 0 !important;
   padding: 0 !important;
-  border: none !important;
+  border: 1px solid #999 !important;
+  border-radius: 50% !important;
   line-height: 1 !important;
   font-size: 1em !important;
+  color: #999 !important;
   text-align: center !important;
   list-style: none !important;
   appearance: none !important;
   -webkit-appearance: none !important;
   flex-shrink: 0 !important;
   background: transparent !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
 }
 
 #__next summary.gsc-reactions-button::-webkit-details-marker {
@@ -1378,13 +1382,16 @@ main {
 #__next .gsc-reactions-button svg,
 #__next summary.gsc-reactions-button svg {
   display: block !important;
-  width: 0.5em !important;
-  height: 0.5em !important;
-  max-width: 0.5em !important;
-  max-height: 0.5em !important;
+  /* 略小于外圈，留出描边内沿 */
+  width: 0.3em !important;
+  height: 0.3em !important;
+  max-width: 0.3em !important;
+  max-height: 0.3em !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;
+  color: inherit !important;
+  fill: currentColor !important;
   vertical-align: middle !important;
   position: static !important;
   inset: auto !important;

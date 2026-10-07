@@ -253,6 +253,10 @@ main {
   flex-direction: column;
   height: 100%;
   align-self: stretch;
+  border: none !important;
+  border-inline-end: 1px solid #eaeaea;
+  padding-inline-end: 0.75em;
+  background: transparent !important;
 }
 
 #__next .gsc-comment > div {
@@ -260,7 +264,11 @@ main {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  /* No card chrome — article body has no boxed frames */
+  border: none !important;
   border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
 #__next .gsc-comment-content {
@@ -277,7 +285,25 @@ main {
   writing-mode: inherit;
   height: 100%;
   align-self: stretch;
+  border: none !important;
   border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+#__next .gsc-comment-box:not(.gsc-comment-box-is-reply) {
+  border: none !important;
+  border-inline-end: 1px solid #eaeaea;
+  border-radius: 0 !important;
+}
+
+#__next .gsc-reply-box,
+#__next .color-box-border-info,
+#__next .rounded-md,
+#__next .rounded {
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
 #__next .gsc-comment-box-tabs {
@@ -339,14 +365,58 @@ main {
   margin-block: 0.25em;
 }
 
-#__next .btn,
-#__next .btn-primary,
-#__next .BtnGroup,
+/* 最早 / 最新：跟正文一样竖排，不要横躺的 pill */
+#__next .BtnGroup {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: stretch;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  border-radius: 0;
+  background: transparent;
+  gap: 0;
+}
+
 #__next .BtnGroup-item {
+  display: block;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  border-radius: 0 !important;
+  border: 1px solid #eaeaea !important;
+  border-block-start: none !important;
+  padding: 0.5em 0.35em !important;
+}
+
+#__next .BtnGroup-item:first-child {
+  border-block-start: 1px solid #eaeaea !important;
+}
+
+#__next .BtnGroup-item .btn,
+#__next .BtnGroup .btn {
+  writing-mode: vertical-rl !important;
+  text-orientation: upright !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  font-family: inherit;
+  font-size: 1em !important;
+  line-height: 1.5 !important;
+}
+
+#__next .BtnGroup-item--selected,
+#__next .BtnGroup-item--selected .btn {
+  background: #fbfbfb !important;
+}
+
+#__next .btn,
+#__next .btn-primary {
   border-radius: 0;
   box-shadow: none;
-  writing-mode: horizontal-tb;
-  text-orientation: mixed;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-family: inherit;
 }
 
 #__next code,

@@ -212,13 +212,21 @@ a:hover {
 
 .giscus,
 .giscus-frame {
-  /* Fill the reading band; grow sideways with content (not a short floating card) */
+  /*
+   * Giscus only auto-resizes height. In vertical-rl content grows sideways,
+   * so a narrow frame clips the comment columns — give a real column budget.
+   */
   height: 56vh !important;
-  width: auto !important;
-  min-width: 16em;
+  width: 42em !important;
+  min-width: 42em;
+  max-width: none;
   max-height: 56vh;
   background: #fff;
   color-scheme: light;
   border: 0;
   vertical-align: top;
+}
+
+.giscus {
+  overflow: visible;
 }

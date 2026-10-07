@@ -194,7 +194,8 @@ main {
   flex: 1 1 auto;
 }
 
-/* Override giscus .875rem */
+/* Override giscus .875rem / text-sm */
+#__next .text-sm,
 #__next .gsc-comment,
 #__next .gsc-comment-box,
 #__next .gsc-loading-text,
@@ -205,7 +206,8 @@ main {
 #__next .markdown,
 #__next .gsc-comments-count,
 #__next .gsc-replies-count,
-#__next .gsc-reactions-count {
+#__next .gsc-reactions-count,
+#__next .gsc-left-header em {
   font-family: inherit;
   font-size: 1em !important;
   line-height: 1.5 !important;
@@ -440,9 +442,29 @@ main {
   color: #333;
 }
 
-/* 「由 giscus 提供支持」：汉文排版不用斜体，直接隐藏 */
-#__next .gsc-left-header > em {
-  display: none !important;
+/* 「由 giscus 提供支持」：去斜体，去掉 text-sm，与「N 条评论」同字号 */
+#__next .gsc-left-header > em,
+#__next .gsc-left-header > em.text-sm,
+#__next .gsc-left-header em.color-text-secondary {
+  display: inline !important;
+  font-style: normal !important;
+  font-size: 1em !important;
+  line-height: 1.5 !important;
+  font-weight: normal;
+  color: #999 !important;
+}
+
+#__next .gsc-left-header > em a,
+#__next .gsc-left-header > em .link-secondary {
+  font-style: normal !important;
+  font-size: inherit !important;
+  color: #999 !important;
+  text-decoration: none;
+}
+
+#__next .gsc-left-header > em a:hover {
+  text-decoration: underline;
+  color: #333 !important;
 }
 
 #__next .btn,

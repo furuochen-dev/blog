@@ -219,12 +219,12 @@ a:hover {
   /*
    * Giscus only auto-resizes height. In vertical-rl content grows sideways,
    * so give a real column budget; height fills .comments (already #main − 1em).
-   * 42em 正文 + 2.5em 内侧右槽（两列回应）。
+   * 42em 正文 + 1.5em 内侧右槽（主区右侧空格）。
    */
   height: 100% !important;
   max-height: 100% !important;
-  width: 44.5em !important;
-  min-width: 44.5em;
+  width: 43.5em !important;
+  min-width: 43.5em;
   max-width: none;
   margin: 0 !important;
   padding: 0;

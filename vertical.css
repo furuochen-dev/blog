@@ -180,34 +180,41 @@ a:hover {
 }
 
 /*
- * Giscus as another #main column band (same 56vh as body copy).
- * In vertical-rl, h3 + iframe are successive block boxes → adjacent columns.
+ * Giscus shares #main’s 56vh band — use 100%, not another 56vh
+ * (nested 56vh + iframe baseline gap sits lower than the article columns).
  */
 .comments {
-  height: 56vh;
+  display: block;
+  height: 100%;
+  max-height: 100%;
   width: auto;
-  margin-block: 0;
+  margin: 0;
   margin-inline: 1em;
   padding: 0;
   border: none;
   box-sizing: border-box;
+  overflow: hidden;
   color: #333;
   background: #fff;
   color-scheme: light;
   font-size: 1em;
+  line-height: 0; /* kill replaced-element strut under the iframe */
 }
 
 .giscus,
 .giscus-frame {
+  display: block;
   /*
    * Giscus only auto-resizes height. In vertical-rl content grows sideways,
-   * so a narrow frame clips the comment columns — give a real column budget.
+   * so give a real column budget; height follows #main, not a second 56vh.
    */
-  height: 56vh !important;
+  height: 100% !important;
+  max-height: 100% !important;
   width: 42em !important;
   min-width: 42em;
   max-width: none;
-  max-height: 56vh;
+  margin: 0 !important;
+  padding: 0;
   background: #fff;
   color-scheme: light;
   border: 0;
@@ -215,5 +222,10 @@ a:hover {
 }
 
 .giscus {
-  overflow: visible;
+  overflow: hidden;
+  line-height: normal;
+}
+
+.giscus-frame {
+  line-height: 0;
 }

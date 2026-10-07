@@ -577,23 +577,31 @@ main {
   word-spacing: -1em;
 }
 
-/* 所有者等徽章：塞进同列，去掉胶囊边框 */
+/*
+ * 所有者 / AUTHOR 等：主评论与回复同一套——
+ * 作者栏里粗体竖排正文，不要 Giscus 靠右小胶囊。
+ */
+#__next .gsc-comment-author .text-xs,
+#__next .gsc-comment-author .color-box-border-info,
 #__next .gsc-reply-author .text-xs,
 #__next .gsc-reply-author .color-box-border-info {
   display: block !important;
   width: 1.5em !important;
   max-width: 1.5em !important;
+  min-width: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
   border-radius: 0 !important;
   background: transparent !important;
+  box-shadow: none !important;
   font-size: 1em !important;
-  font-weight: 600;
+  font-weight: 600 !important;
   line-height: 1.5 !important;
   color: #999 !important;
-  writing-mode: vertical-rl;
-  text-orientation: upright;
+  writing-mode: vertical-rl !important;
+  text-orientation: upright !important;
+  white-space: normal !important;
 }
 
 #__next .gsc-reply-content {

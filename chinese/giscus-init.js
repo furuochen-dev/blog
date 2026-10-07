@@ -6,7 +6,7 @@
 (function () {
   var ORIGIN = "https://giscus.app";
   /* Bump when theme CSS changes so giscus/browsers do not keep a stale sheet */
-  var THEME_VER = "20261008g";
+  var THEME_VER = "20261008h";
   var THEME_V =
     "https://furuochen.com/giscus-blog-zh-vertical.css?v=" + THEME_VER;
   var THEME_H =

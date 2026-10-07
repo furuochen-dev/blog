@@ -604,12 +604,13 @@ main {
   padding: 0 !important;
 }
 
-/* 名称栏同列；拉满高后时间/所有者沉底 */
+/* 名称栏同列；拉满高后时间/所有者沉底（勿超出底边 0.5em） */
 #__next .gsc-reply-header {
   position: absolute;
   inset-block-start: 0;
   inset-inline-start: calc(1.5em + 0.5em);
-  inset-inline-end: 0;
+  /* 相对 .flex 的 gap:0.5em，end 贴 0 会整段多探出 0.5em */
+  inset-inline-end: 0.5em;
   z-index: 1;
   height: auto !important;
 }
@@ -617,11 +618,14 @@ main {
 #__next .gsc-reply-author {
   height: 100%;
   align-self: stretch;
+  gap: 0.5em;
 }
 
 #__next .gsc-reply-author > a.link-secondary,
 #__next .gsc-reply-author > a:has(time) {
   margin-inline-start: auto !important;
+  /* 沉底组自身不再被 gap 往下顶出一截 */
+  margin-inline-end: 0 !important;
 }
 
 #__next .gsc-reply-author a.flex,

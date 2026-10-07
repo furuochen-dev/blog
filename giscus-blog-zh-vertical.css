@@ -924,9 +924,30 @@ main {
   box-shadow: none !important;
 }
 
-/* 「写回复」贴顶，与 .gsc-replies 顶线齐平；无线条伪元素 */
-#__next .gsc-reply-box,
+/*
+ * 展开后的二级回复框（.gsc-comment-box-is-reply）：与一级评论框同布局。
+ * 竖排 flex column = 右→左：撰写/预览 | 文字框 | 取消/回复，勿 row 叠成上下四块。
+ */
+#__next .gsc-comment-box.gsc-comment-box-is-reply,
 #__next .gsc-comment-box-is-reply {
+  writing-mode: inherit;
+  height: 100%;
+  align-self: stretch;
+  display: flex !important;
+  flex-direction: column !important; /* 同 .gsc-comment-box */
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  box-sizing: border-box;
+}
+
+/* 折叠态「写回复」触发条：单列窄轨，与 .gsc-replies 顶线齐平 */
+#__next .gsc-reply-box {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -934,6 +955,8 @@ main {
   align-self: stretch;
   writing-mode: inherit;
   height: 100%;
+  width: 1.5em;
+  max-width: 1.5em;
   box-sizing: border-box;
   margin: 0 !important;
   padding: 0 !important;
@@ -941,11 +964,6 @@ main {
   border-radius: 0 !important;
   box-shadow: none !important;
   background: transparent !important;
-}
-
-#__next .gsc-reply-box {
-  width: 1.5em;
-  max-width: 1.5em;
 }
 
 #__next .gsc-reply-box > button,

@@ -463,6 +463,11 @@ main {
 #__next .gsc-comment-author a:has(time),
 #__next .gsc-comment-header time {
   text-orientation: upright !important;
+  /*
+   * i18n 串是「1 条评论」「15 小时前」——竖排 upright 下 U+0020 常占满 1em。
+   * word-spacing 加在空格固有宽度上；-1em 把那道空隙吃掉。
+   */
+  word-spacing: -1em;
 }
 
 #__next .gsc-comment-author-avatar,

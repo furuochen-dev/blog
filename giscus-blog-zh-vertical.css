@@ -156,21 +156,23 @@ main {
 }
 
 /*
- * row = 沿 inline（上下）堆：先「0 个表情」，再评论区。
- * comments 内部再用 column 做右→左栏。
+ * comments 仍按 column 右→左排栏。
+ * 「0 个表情」绝对定位进 header 列：在「N 条评论」下、「最早/最新」上，
+ * 不再占主轴，避免把整块评论区往下推。
  */
 #__next .gsc-main {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-  gap: 0.75em;
+  gap: 1em;
   width: max-content;
   min-width: 100%;
   height: 100%;
   font-family: inherit;
   font-size: 1em;
   overflow: visible;
+  position: relative;
 }
 
 #__next .gsc-reactions {
@@ -178,17 +180,22 @@ main {
   text-orientation: inherit;
   font-family: inherit;
   font-size: 1em;
+  position: absolute;
+  z-index: 6;
+  /* 与 .gsc-header 同列（竖排栏在 comments 右侧） */
+  top: 4.5em;
+  right: 0;
+  width: 1em;
+  max-width: 1em;
   display: flex;
   flex-direction: row;
-  flex: none;
   align-items: flex-start;
   justify-content: flex-start;
   gap: 0.5em;
-  width: 1em;
-  max-width: 1em;
-  height: auto;
-  align-self: flex-start;
+  margin: 0;
+  padding: 0;
   overflow: visible;
+  pointer-events: auto;
 }
 
 #__next .gsc-reactions-count {
@@ -196,6 +203,7 @@ main {
   max-width: 1em;
   text-align: start;
   margin: 0;
+  line-height: 1 !important;
 }
 
 #__next .gsc-reactions > div.flex {
@@ -213,6 +221,7 @@ main {
   overflow: visible;
 }
 
+#__next .gsc-comments,
 #__next .gsc-timeline {
   writing-mode: inherit;
   text-orientation: inherit;
@@ -224,20 +233,13 @@ main {
 }
 
 #__next .gsc-comments {
-  writing-mode: inherit;
-  text-orientation: inherit;
-  font-family: inherit;
-  font-size: 1em;
   display: flex;
   flex-direction: column;
   gap: 1em;
-  flex: 1 1 auto;
-  /* 吃掉表情区以下的剩余高度，勿再写 100% 以免顶出 band */
-  height: auto;
-  min-height: 0;
-  align-self: stretch;
+  height: 100%;
   align-items: stretch;
   overflow: visible;
+  position: relative;
 }
 
 #__next .gsc-timeline {

@@ -1485,8 +1485,8 @@ main {
 }
 
 /*
- * 表情弹出层：横排盒模型；一律开在按钮左侧（下面会裁切/看不见）。
- * 「选择您的回应」占位去掉。
+ * 表情弹出层：横排盒模型；开在笑脸左侧。
+ * 打开时抬高整条祖先轨的 z-index，避免被邻近笑脸/👍 盖住。
  */
 #__next .gsc-reactions-menu,
 #__next .gsc-comment-reactions .gsc-reactions-menu,
@@ -1496,6 +1496,22 @@ main {
   text-orientation: mixed !important;
   overflow: visible !important;
   z-index: 30;
+}
+
+#__next .gsc-comment:has(.gsc-reactions-popover.open),
+#__next .gsc-reply:has(.gsc-reactions-popover.open),
+#__next .gsc-comment-footer:has(.gsc-reactions-popover.open),
+#__next .gsc-reply-footer:has(.gsc-reactions-popover.open),
+#__next .gsc-reactions:has(.gsc-reactions-popover.open),
+#__next .gsc-reactions-menu:has(.gsc-reactions-popover.open),
+#__next details.gsc-reactions-menu[open] {
+  position: relative;
+  z-index: 200 !important;
+}
+
+#__next .gsc-reactions:has(.gsc-reactions-popover.open) {
+  position: absolute; /* 顶栏表情仍绝对定位 */
+  z-index: 200 !important;
 }
 
 #__next .gsc-reactions-popover,
@@ -1515,24 +1531,63 @@ main {
   max-height: none !important;
   box-sizing: border-box !important;
   overflow: visible !important;
-  z-index: 50 !important;
-  /* 左侧展开，避开竖排底边裁切 */
-  top: 0 !important;
+  z-index: 210 !important;
+  /* 左侧展开；顶对齐笑脸（勿用 giscus 的 top-9/bottom-9） */
+  top: 50% !important;
   bottom: auto !important;
   left: auto !important;
-  right: calc(100% + 0.35em) !important;
+  right: calc(100% + 0.5em) !important;
   margin: 0 !important;
-  transform-origin: right top !important;
+  transform: translateY(-50%) scale(0.5) !important;
+  transform-origin: right center !important;
 }
 
 #__next .gsc-reactions-popover:not(.open) {
-  transform: scale(0.5) !important;
+  transform: translateY(-50%) scale(0.5) !important;
   visibility: hidden !important;
 }
 
 #__next .gsc-reactions-popover.open {
-  transform: scale(1) !important;
+  transform: translateY(-50%) scale(1) !important;
   visibility: visible !important;
+}
+
+/*
+ * 箭头：弹出在按钮左侧 → 箭头应在右边、指向按钮。
+ * 盖掉 giscus 默认的上下三角（.top/.bottom）。
+ */
+#__next .gsc-reactions-popover.open::before,
+#__next .gsc-reactions-popover.open::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 50% !important;
+  bottom: auto !important;
+  left: auto !important;
+  margin: 0 !important;
+  transform: translateY(-50%) !important;
+  border-style: solid !important;
+  border-color: transparent !important;
+}
+
+#__next .gsc-reactions-popover.open::before {
+  right: -16px !important;
+  border-width: 8px !important;
+  border-left-color: var(--color-border-default, #eaeaea) !important;
+}
+
+#__next .gsc-reactions-popover.open::after {
+  right: -14px !important;
+  border-width: 7px !important;
+  border-left-color: var(--color-canvas-overlay, #fff) !important;
+}
+
+#__next .gsc-reactions-popover.open.bottom::before,
+#__next .gsc-reactions-popover.open.top::before,
+#__next .gsc-reactions-popover.open.bottom::after,
+#__next .gsc-reactions-popover.open.top::after {
+  /* 取消上下指向 */
+  border-top-color: transparent !important;
+  border-bottom-color: transparent !important;
 }
 
 /* 只藏「选择您的回应」标题和顶部分隔线；表情格 .m-2 必须留下 */

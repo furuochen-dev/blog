@@ -455,30 +455,36 @@ main {
   overflow: visible;
 }
 
+/* 「N 条回复」：1.5em 行轨正中（grid，避开 vertical-rl 下 margin:auto / mr-4 跑偏） */
 #__next .gsc-comment-replies-count {
   writing-mode: vertical-rl !important;
   text-orientation: upright !important;
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
+  display: grid !important;
+  place-items: center !important;
+  place-content: center start !important;
   width: 1.5em !important;
   max-width: 1.5em !important;
   box-sizing: border-box;
   margin: 0 !important;
+  margin-right: 0 !important; /* 盖掉 Giscus mr-4 */
+  margin-left: 0 !important;
   padding: 0 !important;
 }
 
 #__next .gsc-comment-replies-count .text-xs {
   writing-mode: vertical-rl !important;
   text-orientation: upright !important;
+  display: block !important;
   font-size: 1em !important;
   line-height: 1.5 !important;
   width: 1em !important;
   max-width: 1em !important;
+  margin: 0 !important;
+  padding: 0 !important;
   word-spacing: -1em;
   white-space: normal;
-  margin: 0 auto !important;
+  justify-self: center !important;
+  align-self: center !important;
 }
 
 /* 仅笑脸触发器保持横排；已选 👍1 等走下方竖排栈 */

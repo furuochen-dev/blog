@@ -755,21 +755,21 @@ main {
 }
 
 /*
- * 二级回复带：inset 底 + 顶上 1em 区内细线（只有嵌套回复正文在线下）。
- * 细线往左指到「写回复」——按钮本身贴在线端，不进 1em 区。
+ * 二级回复带：inset 底；顶上 1em 后才是嵌套正文。
+ * 细线用伪元素画在物理顶边，并向左伸出指到「写回复」（按钮不进 1em 区）。
  */
 #__next .gsc-replies {
   writing-mode: inherit;
   text-orientation: inherit;
+  position: relative;
   align-self: stretch;
   height: 100%;
   box-sizing: border-box;
   margin: 0 !important;
   padding: 0 !important;
-  padding-inline-start: 1em !important; /* 嵌套正文在线下 */
+  padding-inline-start: 1em !important;
   border: none !important;
   border-radius: 0 !important;
-  border-inline-start: 1px solid #333 !important;
   background-color: var(--color-canvas-inset) !important;
   box-shadow: none !important;
 }
@@ -778,7 +778,20 @@ main {
   background-color: var(--color-canvas-inset) !important;
 }
 
-/* 「写回复」/ 展开的回复框：贴线端，无 1em 下沉 */
+/* 顶线：盖住回复带顶边，并向左伸进「写回复」列 */
+#__next .gsc-replies::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: -1.5em;
+  height: 1px;
+  background: #333;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* 「写回复」贴顶；自身不再加 border/padding 以免整列沉到线下 */
 #__next .gsc-reply-box,
 #__next .gsc-comment-box-is-reply {
   display: flex;
@@ -787,15 +800,13 @@ main {
   justify-content: flex-start;
   align-self: stretch;
   writing-mode: inherit;
+  position: relative;
   height: 100%;
   box-sizing: border-box;
   margin: 0 !important;
   padding: 0 !important;
-  padding-inline-start: 0 !important;
   border: none !important;
   border-radius: 0 !important;
-  /* 顶线接到此列，文字就在线端 */
-  border-inline-start: 1px solid #333 !important;
   box-shadow: none !important;
   background: transparent !important;
 }
@@ -803,6 +814,19 @@ main {
 #__next .gsc-reply-box {
   width: 1.5em;
   max-width: 1.5em;
+}
+
+/* 无二级回复时：短顶线仍指到按钮 */
+#__next .gsc-reply-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #333;
+  z-index: 2;
+  pointer-events: none;
 }
 
 #__next .gsc-reply-box > button,
@@ -1086,10 +1110,12 @@ main {
 }
 
 /*
- * 表情弹出层：必须横排盒模型。祖先 vertical-rl 会把 width:146px 拧成细条。
+ * 表情弹出层：横排盒模型；一律开在按钮左侧（下面会裁切/看不见）。
+ * 「选择您的回应」占位去掉。
  */
 #__next .gsc-reactions-menu,
-#__next .gsc-comment-reactions .gsc-reactions-menu {
+#__next .gsc-comment-reactions .gsc-reactions-menu,
+#__next .gsc-reactions .gsc-reactions-menu {
   position: relative;
   writing-mode: horizontal-tb !important;
   text-orientation: mixed !important;
@@ -1098,7 +1124,11 @@ main {
 }
 
 #__next .gsc-reactions-popover,
-#__next .gsc-reactions-popover.open {
+#__next .gsc-reactions-popover.open,
+#__next .gsc-reactions-popover.bottom,
+#__next .gsc-reactions-popover.top,
+#__next .gsc-reactions-popover.left,
+#__next .gsc-reactions-popover.right {
   writing-mode: horizontal-tb !important;
   text-orientation: mixed !important;
   direction: ltr;
@@ -1111,19 +1141,70 @@ main {
   max-height: none !important;
   box-sizing: border-box !important;
   overflow: visible !important;
-  z-index: 40 !important;
-  inset: auto;
+  z-index: 50 !important;
+  /* 左侧展开，避开竖排底边裁切 */
+  top: 0 !important;
+  bottom: auto !important;
+  left: auto !important;
+  right: calc(100% + 0.35em) !important;
+  margin: 0 !important;
+  transform: scale(0.5) !important;
+  transform-origin: right top !important;
 }
 
-#__next .gsc-reactions-popover.bottom {
-  top: 2.25rem !important;
-  left: -0.375rem !important;
-  right: auto !important;
-  bottom: auto !important;
+#__next .gsc-reactions-popover.open {
+  transform: scale(1) !important;
+  visibility: visible !important;
+}
+
+/* 隐藏「选择您的回应」文案区与分隔线，只留表情格 */
+#__next .gsc-reactions-popover > p,
+#__next .gsc-reactions-popover > .my-2.border-t,
+#__next .gsc-reactions-popover > .border-t {
+  display: none !important;
+}
+
+/* 笑脸按钮：强制方盒居中（summary/octicon 默认很难对齐） */
+#__next .gsc-reactions-button,
+#__next summary.gsc-reactions-button {
+  writing-mode: horizontal-tb !important;
+  text-orientation: mixed !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  width: 26px !important;
+  height: 26px !important;
+  min-width: 26px !important;
+  min-height: 26px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 0 !important;
+  list-style: none !important;
+}
+
+#__next .gsc-reactions-button::-webkit-details-marker,
+#__next .gsc-reactions-button::marker,
+#__next .gsc-reactions-button::before {
+  display: none !important;
+  content: none !important;
+}
+
+#__next .gsc-reactions-button .octicon,
+#__next .gsc-reactions-button svg {
+  display: block !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  vertical-align: middle !important;
+  position: static !important;
+  inset: auto !important;
+  overflow: visible !important;
+  flex: none !important;
 }
 
 #__next .gsc-emoji-button,
-#__next .gsc-reactions-button,
 #__next .gsc-social-reaction-summary-item:not(.gsc-upvote-button),
 #__next .gsc-direct-reaction-button {
   writing-mode: horizontal-tb !important;

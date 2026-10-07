@@ -182,10 +182,10 @@ main {
   font-size: 1em;
   position: absolute;
   z-index: 6;
-  /* 笑脸 1em 方盒，与计数列同轨 */
-  width: 1em;
-  max-width: 1em;
-  min-width: 1em;
+  /* 活字行轨：1.5em = line-height 一行宽 */
+  width: 1.5em;
+  max-width: 1.5em;
+  min-width: 1.5em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -229,8 +229,8 @@ main {
   gap: 0;
   margin: 0 !important;
   padding: 0 !important;
-  width: 1em !important;
-  max-width: 1em !important;
+  width: 1.5em !important;
+  max-width: 1.5em !important;
   overflow: visible;
 }
 
@@ -1282,18 +1282,18 @@ main {
 }
 
 /*
- * 笑脸：1em 方盒（别用 1.5em，会显过大），图标 0.75em 正中。
- * 清掉 summary 三角槽；font-size 保持 1em（勿 0，否则 em 坍成 0）。
+ * 笑脸：活字行宽 1.5em × 1.5em 格，1em 图标格内居中。
+ * 清掉 summary 三角槽；font-size 保持 1em（勿 0）。
  */
 #__next .gsc-reactions-menu {
   display: grid !important;
   place-items: center !important;
-  width: 1em !important;
-  height: 1em !important;
-  min-width: 1em !important;
-  min-height: 1em !important;
-  max-width: 1em !important;
-  max-height: 1em !important;
+  width: 1.5em !important;
+  height: 1.5em !important;
+  min-width: 1.5em !important;
+  min-height: 1.5em !important;
+  max-width: 1.5em !important;
+  max-height: 1.5em !important;
   box-sizing: border-box;
   flex-shrink: 0;
   font-size: 1em !important;
@@ -1310,12 +1310,12 @@ main {
   place-items: center !important;
   place-content: center !important;
   box-sizing: border-box !important;
-  width: 1em !important;
-  height: 1em !important;
-  min-width: 1em !important;
-  min-height: 1em !important;
-  max-width: 1em !important;
-  max-height: 1em !important;
+  width: 1.5em !important;
+  height: 1.5em !important;
+  min-width: 1.5em !important;
+  min-height: 1.5em !important;
+  max-width: 1.5em !important;
+  max-height: 1.5em !important;
   margin: 0 !important;
   padding: 0 !important;
   border-width: 1px !important;
@@ -1347,10 +1347,10 @@ main {
 #__next .gsc-reactions-button svg,
 #__next summary.gsc-reactions-button svg {
   display: block !important;
-  width: 0.75em !important;
-  height: 0.75em !important;
-  max-width: 0.75em !important;
-  max-height: 0.75em !important;
+  width: 1em !important;
+  height: 1em !important;
+  max-width: 1em !important;
+  max-height: 1em !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;

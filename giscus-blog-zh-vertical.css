@@ -755,8 +755,8 @@ main {
 }
 
 /*
- * 二级回复带（.gsc-replies）：保留 inset 底；
- * 顶上 1em 高区域内一条细线表示从属，并向左接到「写回复」。
+ * 二级回复带：inset 底 + 顶上 1em 区内细线（只有嵌套回复正文在线下）。
+ * 细线往左指到「写回复」——按钮本身贴在线端，不进 1em 区。
  */
 #__next .gsc-replies {
   writing-mode: inherit;
@@ -766,10 +766,10 @@ main {
   box-sizing: border-box;
   margin: 0 !important;
   padding: 0 !important;
-  padding-inline-start: 1em !important; /* 顶上占 1em */
+  padding-inline-start: 1em !important; /* 嵌套正文在线下 */
   border: none !important;
   border-radius: 0 !important;
-  border-inline-start: 1px solid #333 !important; /* 顶上细线 */
+  border-inline-start: 1px solid #333 !important;
   background-color: var(--color-canvas-inset) !important;
   box-shadow: none !important;
 }
@@ -778,8 +778,9 @@ main {
   background-color: var(--color-canvas-inset) !important;
 }
 
-/* 「写回复」：贴顶，顶线与 .gsc-replies 相接往左延伸 */
-#__next .gsc-reply-box {
+/* 「写回复」/ 展开的回复框：贴线端，无 1em 下沉 */
+#__next .gsc-reply-box,
+#__next .gsc-comment-box-is-reply {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -787,17 +788,21 @@ main {
   align-self: stretch;
   writing-mode: inherit;
   height: 100%;
-  width: 1.5em;
-  max-width: 1.5em;
   box-sizing: border-box;
   margin: 0 !important;
   padding: 0 !important;
-  padding-inline-start: 1em !important; /* 与回复带同顶距，文字在线下 */
+  padding-inline-start: 0 !important;
   border: none !important;
   border-radius: 0 !important;
-  border-inline-start: 1px solid #333 !important; /* 顶线往左接 */
+  /* 顶线接到此列，文字就在线端 */
+  border-inline-start: 1px solid #333 !important;
   box-shadow: none !important;
   background: transparent !important;
+}
+
+#__next .gsc-reply-box {
+  width: 1.5em;
+  max-width: 1.5em;
 }
 
 #__next .gsc-reply-box > button,

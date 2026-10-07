@@ -910,7 +910,7 @@ main {
   flex-direction: column; /* 竖排：各条回复右→左 */
   align-items: stretch;
   align-self: stretch;
-  gap: 0.5em;
+  gap: 0; /* 回复之间不插 gap，贴轨排列 */
   height: 100%;
   box-sizing: border-box;
   margin: 0 !important;

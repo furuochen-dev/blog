@@ -175,26 +175,30 @@ main {
   position: relative;
 }
 
+/*
+ * 顶栏「N 个表情」：与评论页脚同轨——1em 宽 + 左右 0.25em margin-block。
+ */
 #__next .gsc-reactions {
-  writing-mode: inherit;
-  text-orientation: inherit;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
   font-family: inherit;
   font-size: 1em;
   position: absolute;
   z-index: 6;
-  /* 与页脚同 1em 行轨 */
   width: 1em;
   max-width: 1em;
   min-width: 1em;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.5em;
   margin: 0;
+  margin-block: 0.25em;
   padding: 0;
   overflow: visible;
   pointer-events: auto;
+  box-sizing: border-box;
   /* 无 anchor 时：落在最早/最新上方，宁缺勿叠 */
   right: 0;
   top: auto;
@@ -215,22 +219,26 @@ main {
   max-width: 1em;
   text-align: start;
   margin: 0;
+  padding: 0;
   line-height: 1 !important;
 }
 
+/* 盖掉 Giscus flex/mt-2/gap-2；同轨竖排，勿改 horizontal-tb 横铺出轨 */
 #__next .gsc-reactions > div.flex {
-  writing-mode: horizontal-tb;
-  text-orientation: mixed;
+  writing-mode: vertical-rl !important;
+  text-orientation: upright !important;
   display: flex !important;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0.5em !important;
   margin: 0 !important;
+  margin-top: 0 !important;
   padding: 0 !important;
   width: 1em !important;
   max-width: 1em !important;
+  flex: none !important;
   overflow: visible;
 }
 
@@ -1316,17 +1324,17 @@ main {
 }
 
 /*
- * 添加回应：0.5em 圆钮（描边圈 + 内嵌笑脸），落在页脚 1em 行轨正中。
+ * 添加回应：0.75em 圆钮（描边圈 + 内嵌笑脸），落在 1em 行轨正中。
  */
 #__next .gsc-reactions-menu {
   display: grid !important;
   place-items: center !important;
-  width: 0.5em !important;
-  height: 0.5em !important;
-  min-width: 0.5em !important;
-  min-height: 0.5em !important;
-  max-width: 0.5em !important;
-  max-height: 0.5em !important;
+  width: 0.75em !important;
+  height: 0.75em !important;
+  min-width: 0.75em !important;
+  min-height: 0.75em !important;
+  max-width: 0.75em !important;
+  max-height: 0.75em !important;
   box-sizing: border-box;
   flex-shrink: 0;
   font-size: 1em !important;
@@ -1343,12 +1351,12 @@ main {
   place-items: center !important;
   place-content: center !important;
   box-sizing: border-box !important;
-  width: 0.5em !important;
-  height: 0.5em !important;
-  min-width: 0.5em !important;
-  min-height: 0.5em !important;
-  max-width: 0.5em !important;
-  max-height: 0.5em !important;
+  width: 0.75em !important;
+  height: 0.75em !important;
+  min-width: 0.75em !important;
+  min-height: 0.75em !important;
+  max-width: 0.75em !important;
+  max-height: 0.75em !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 1px solid #999 !important;
@@ -1386,10 +1394,10 @@ main {
 #__next summary.gsc-reactions-button svg {
   display: block !important;
   /* 略小于外圈，留出描边内沿 */
-  width: 0.3em !important;
-  height: 0.3em !important;
-  max-width: 0.3em !important;
-  max-height: 0.3em !important;
+  width: 0.45em !important;
+  height: 0.45em !important;
+  max-width: 0.45em !important;
+  max-height: 0.45em !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 0 !important;

@@ -112,32 +112,70 @@ main {
   color: var(--color-fg-default);
   writing-mode: horizontal-tb;
   font-family: "LXGW WenKai TC", "Noto Serif TC", serif;
-  /*
-   * Fallback only (giscus-init.js overwrites with parent computed px).
-   * Must match chinese-horizontal.css body — not giscus’s .875rem.
-   */
-  font-size: 18px;
-  line-height: 1.8;
+  /* Same computed size as chinese-horizontal.css body */
+  font-size: 18px !important;
+  line-height: 1.8 !important;
   font-variant-numeric: tabular-nums;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
-/* Kill giscus .875rem / 1.25rem on comment chrome */
-#__next .gsc-comment,
-#__next .gsc-comment-box,
-#__next .gsc-loading-text,
-#__next .gsc-pagination-button,
-#__next .form-control,
-#__next .form-select,
-#__next .btn,
-#__next .markdown {
-  font-family: inherit;
-  font-size: 1em !important;
+html,
+body,
+#__next {
+  font-family: "LXGW WenKai TC", "Noto Serif TC", serif;
+  font-size: 18px !important;
   line-height: 1.8 !important;
-  color: var(--color-fg-default);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/*
+ * Giscus uses h4 / .text-sm / .875rem — those read larger or smaller than body.
+ * Lock every chrome node to the same 18px as the article.
+ */
+#__next :is(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  li,
+  a,
+  span,
+  time,
+  em,
+  button,
+  textarea,
+  summary,
+  .btn,
+  .markdown,
+  .text-sm,
+  .text-xs,
+  .form-control,
+  .form-select,
+  .gsc-comment,
+  .gsc-comment-box,
+  .gsc-comment-content,
+  .gsc-comment-box-textarea,
+  .gsc-loading-text,
+  .gsc-pagination-button,
+  .gsc-comments-count,
+  .gsc-replies-count,
+  .gsc-reactions-count,
+  .gsc-social-reaction-summary-item,
+  .gsc-social-reaction-summary-item-count
+) {
+  font-family: inherit !important;
+  font-size: 18px !important;
+  line-height: 1.8 !important;
 }
 
 #__next .gsc-comment-content {
   text-align: left;
+  color: var(--color-fg-default);
 }
 
 #__next .btn,
